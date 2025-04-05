@@ -1,0 +1,27 @@
+{
+  "name": "stuhouses",
+  "version": "1.0.0",
+  "description": "Student accommodation platform",
+  "main": "index.js",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "migrate": "cd backend && npm run db:migrate",
+    "seed": "cd backend && npm run db:seed",
+    "setup": "npm run migrate && npm run seed",
+    "clean-ports": "kill-port 3000 3001 3002 3003 3004 3005 5000 || true"
+  },
+  "keywords": [
+    "student",
+    "accommodation",
+    "nextjs",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "kill-port": "^2.0.1"
+  }
+} 

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Avenir', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-neutral-light text-neutral-dark;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-neutral-dark;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  a {
+    @apply text-primary hover:text-primary-700 transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .button {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 ease-in-out;
+  }
+  
+  .button-primary {
+    @apply button bg-primary text-white hover:bg-primary-600 active:bg-primary-700;
+  }
+  
+  .button-secondary {
+    @apply button bg-secondary text-white hover:bg-secondary-600 active:bg-secondary-700;
+  }
+  
+  .button-tertiary {
+    @apply button bg-tertiary text-white hover:bg-tertiary-dark;
+  }
+  
+  .button-outline {
+    @apply button border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6 transition-shadow duration-200 hover:shadow-card-hover;
+  }
+  
+  .nav-link {
+    @apply text-neutral font-medium hover:text-primary transition-colors duration-200 px-3 py-2;
+  }
+  
+  .nav-link-active {
+    @apply text-primary font-bold;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+  }
+  
+  .input-error {
+    @apply border-secondary-500 focus:ring-secondary-500;
+  }
+  
+  .select {
+    @apply input appearance-none bg-white;
+  }
+  
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+} 
