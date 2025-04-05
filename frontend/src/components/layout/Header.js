@@ -2,19 +2,23 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Bars3Icon, XMarkIcon, UserIcon, HeartIcon } from '@heroicons/react/24/outline';
-
-const navigation = [
-  { name: 'Student Accommodation', href: '/properties', current: false },
-  { name: 'Cities', href: '/cities', current: false },
-  { name: 'Universities', href: '/universities', current: false },
-  { name: 'About', href: '/about', current: false },
-  { name: 'Contact', href: '/contact', current: false },
-];
+import LanguageSelector from '../LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation();
+
+  // Define navigation with translations
+  const navigation = [
+    { name: t('nav.properties'), href: '/properties', current: false },
+    { name: t('nav.cities'), href: '/cities', current: false },
+    { name: t('nav.universities'), href: '/universities', current: false },
+    { name: t('nav.about'), href: '/about', current: false },
+    { name: t('nav.contact'), href: '/contact', current: false },
+  ];
 
   // Update current page in navigation
   const activeNavigation = navigation.map(item => ({
@@ -69,10 +73,13 @@ export default function Header() {
 
           {/* User Actions */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Language Selector */}
+            <LanguageSelector className="mr-2" />
+            
             <Link
               href="/shortlist"
               className="p-2 text-neutral hover:text-primary hover:bg-neutral-light rounded-full transition-colors"
-              aria-label="My Shortlist"
+              aria-label={t('nav.shortlist')}
             >
               <HeartIcon className="h-6 w-6" />
             </Link>
@@ -81,12 +88,15 @@ export default function Header() {
               className="button-outline-primary"
             >
               <UserIcon className="h-5 w-5 mr-2" />
-              <span>Login / Register</span>
+              <span>{t('nav.login')} / {t('nav.signup')}</span>
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
+            {/* Mobile Language Selector */}
+            <LanguageSelector className="mr-2" />
+            
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-neutral-dark hover:text-primary hover:bg-neutral-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
@@ -95,7 +105,7 @@ export default function Header() {
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">
-                {isOpen ? 'Close main menu' : 'Open main menu'}
+                {isOpen ? t('common.close') : t('common.open')}
               </span>
               {isOpen ? (
                 <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -135,7 +145,7 @@ export default function Header() {
               onClick={() => setIsOpen(false)}
             >
               <HeartIcon className="h-5 w-5 mr-3" />
-              My Shortlist
+              {t('nav.shortlist')}
             </Link>
             <Link
               href="/auth"
@@ -143,7 +153,7 @@ export default function Header() {
               onClick={() => setIsOpen(false)}
             >
               <UserIcon className="h-5 w-5 mr-3" />
-              Login / Register
+              {t('nav.login')} / {t('nav.signup')}
             </Link>
           </div>
         </div>

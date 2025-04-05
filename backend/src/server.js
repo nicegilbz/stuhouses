@@ -7,10 +7,48 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { isLoggedIn } = require('./middleware/auth');
 const { logger, requestLogger } = require('./config/logger');
+const net = require('net');
 
 // Initialize Express app
 const app = express();
-const port = process.env.PORT || 5000;
+const DEFAULT_PORT = process.env.PORT || 5000;
+
+// Find an available port
+const findAvailablePort = (port, maxAttempts = 10) => {
+  return new Promise((resolve, reject) => {
+    let currentPort = port;
+    let attempts = 0;
+
+    const tryPort = (port) => {
+      attempts++;
+      const server = net.createServer();
+      
+      server.once('error', (err) => {
+        if (err.code === 'EADDRINUSE') {
+          logger.warn(`Port ${port} is in use, trying ${port + 1} instead.`);
+          server.close();
+          if (attempts < maxAttempts) {
+            tryPort(port + 1);
+          } else {
+            reject(new Error(`Could not find an available port after ${maxAttempts} attempts`));
+          }
+        } else {
+          reject(err);
+        }
+      });
+
+      server.once('listening', () => {
+        const foundPort = server.address().port;
+        server.close();
+        resolve(foundPort);
+      });
+
+      server.listen(port);
+    };
+
+    tryPort(currentPort);
+  });
+};
 
 // Determine environment
 const isProduction = process.env.NODE_ENV === 'production';
@@ -86,12 +124,14 @@ app.use((err, req, res, next) => {
   logger.error(`${req.method} ${req.originalUrl} - ${err.message}`, { 
     stack: err.stack,
     statusCode,
-    path: req.originalUrl
+    path: req.originalUrl,
+    transactionId: req.transactionId // Will be set by request logger
   });
   
   res.status(statusCode).json({
     status,
     message: err.message,
+    transactionId: req.transactionId,
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   });
 });
@@ -148,22 +188,30 @@ if (isVercel) {
   module.exports = app;
 } else {
   // Start the server for local development
-  const server = app.listen(port, () => {
-    logger.info(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
-    logger.info(`API available at http://localhost:${port}/api`);
-    
-    // Check database connection
-    checkDatabaseConnection();
-  });
-  
-  // Graceful shutdown
-  process.on('SIGTERM', () => {
-    logger.info('SIGTERM signal received, shutting down gracefully');
-    server.close(() => {
-      logger.info('Server closed');
-      process.exit(0);
-    });
-  });
+  (async () => {
+    try {
+      const port = await findAvailablePort(DEFAULT_PORT);
+      const server = app.listen(port, () => {
+        logger.info(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
+        logger.info(`API available at http://localhost:${port}/api`);
+        
+        // Check database connection
+        checkDatabaseConnection();
+      });
+      
+      // Graceful shutdown
+      process.on('SIGTERM', () => {
+        logger.info('SIGTERM signal received, shutting down gracefully');
+        server.close(() => {
+          logger.info('Server closed');
+          process.exit(0);
+        });
+      });
+    } catch (error) {
+      logger.error(`Failed to start server: ${error.message}`, { stack: error.stack });
+      process.exit(1);
+    }
+  })();
 }
 
 // In development, export the app for testing

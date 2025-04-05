@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    domains: ['images.unsplash.com', 'images.pexels.com', 'res.cloudinary.com', 'plus.unsplash.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -20,10 +21,7 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
-  },
-  i18n: {
-    locales: ['en-GB'],
-    defaultLocale: 'en-GB',
+    unoptimized: process.env.NODE_ENV === 'development',
   },
   sassOptions: {
     includePaths: ['./src/styles'],
@@ -36,6 +34,9 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  // Using built-in i18n is less recommended with app router
+  // We'll implement i18n via our custom solution instead
+  i18n: null,
 }
 
 module.exports = nextConfig 

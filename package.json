@@ -1,27 +1,34 @@
 {
   "name": "stuhouses",
   "version": "1.0.0",
-  "description": "Student accommodation platform",
+  "description": "Student housing platform with multilingual support",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start:frontend": "cd frontend && npm run start",
+    "start:backend": "cd backend && npm run start",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "migrate": "cd backend && npm run db:migrate",
-    "seed": "cd backend && npm run db:seed",
-    "setup": "npm run migrate && npm run seed",
-    "clean-ports": "kill-port 3000 3001 3002 3003 3004 3005 5000 || true"
+    "build": "concurrently \"npm run build:frontend\" \"npm run build:backend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm install",
+    "install:all": "npm install && concurrently \"npm run install:frontend\" \"npm run install:backend\"",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "clean": "rm -rf node_modules && rm -rf frontend/node_modules && rm -rf backend/node_modules"
   },
   "keywords": [
     "student",
     "accommodation",
-    "nextjs",
+    "housing",
+    "multilingual",
+    "next.js",
     "express"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "kill-port": "^2.0.1"
+    "concurrently": "^8.2.2"
   }
 } 
