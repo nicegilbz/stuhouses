@@ -1,35 +1,14 @@
 const express = require('express');
+const agentController = require('../controllers/agentController');
 const router = express.Router();
 
-// Temporary placeholder responses
-router.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Agents API is under development',
-    data: {
-      agents: []
-    }
-  });
-});
+// Get all agents
+router.get('/', agentController.getAllAgents);
 
-router.get('/:id', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Agent details API is under development',
-    data: {
-      agent: null
-    }
-  });
-});
+// Get a single agent by ID
+router.get('/:id', agentController.getAgent);
 
-router.get('/:id/properties', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Agent properties API is under development',
-    data: {
-      properties: []
-    }
-  });
-});
+// Get properties by agent ID
+router.get('/:id/properties', agentController.getAgentProperties);
 
 module.exports = router; 

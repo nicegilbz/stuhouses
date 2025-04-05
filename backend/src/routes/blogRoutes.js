@@ -1,55 +1,20 @@
 const express = require('express');
+const blogController = require('../controllers/blogController');
 const router = express.Router();
 
-// Temporary placeholder responses
-router.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Blog API is under development',
-    data: {
-      posts: []
-    }
-  });
-});
+// Get all blog posts
+router.get('/', blogController.getAllPosts);
 
-router.get('/:slug', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Blog post API is under development',
-    data: {
-      post: null
-    }
-  });
-});
+// Get all blog categories
+router.get('/categories', blogController.getCategories);
 
-router.get('/categories', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Blog categories API is under development',
-    data: {
-      categories: []
-    }
-  });
-});
+// Get posts by category
+router.get('/categories/:slug', blogController.getPostsByCategory);
 
-router.get('/categories/:slug', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Blog category posts API is under development',
-    data: {
-      posts: []
-    }
-  });
-});
+// Get featured posts
+router.get('/posts/featured', blogController.getFeaturedPosts);
 
-router.get('/posts/featured', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Featured posts API is under development',
-    data: {
-      posts: []
-    }
-  });
-});
+// Get a single blog post by slug (must be last to avoid conflicts)
+router.get('/:slug', blogController.getPost);
 
 module.exports = router; 

@@ -12,9 +12,13 @@ const { logger, requestLogger } = require('./config/logger');
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Determine environment
+const isProduction = process.env.NODE_ENV === 'production';
+const frontendURL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: isProduction ? [frontendURL, /\.vercel\.app$/] : '*',
   credentials: true,
 }));
 app.use(express.json());
@@ -93,15 +97,20 @@ app.use((err, req, res, next) => {
 });
 
 // Database connection status check
-app.once('ready', async () => {
+const checkDatabaseConnection = async () => {
   try {
     await db.raw('SELECT 1');
     logger.info('Database connection established');
+    return true;
   } catch (error) {
     logger.error('Database connection failed:', { error: error.message });
-    process.exit(1);
+    // In production, we might want to exit, but in development just log the error
+    if (isProduction) {
+      process.exit(1);
+    }
+    return false;
   }
-});
+};
 
 // Handle uncaught exceptions
 process.on('uncaughtException', (error) => {
@@ -124,9 +133,40 @@ process.on('unhandledRejection', (reason, promise) => {
   });
 });
 
-// Start the server
-app.listen(port, () => {
-  logger.info(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
-  logger.info(`API available at http://localhost:${port}/api`);
-  app.emit('ready');
-}); 
+// Check if we're running in Vercel serverless environment
+const isVercel = process.env.VERCEL === '1';
+
+if (isVercel) {
+  // In Vercel, we don't need to start a server
+  // Vercel will handle the request/response cycle
+  logger.info('Running in Vercel serverless environment');
+  
+  // Check database connection
+  checkDatabaseConnection();
+  
+  // Export the Express app for Vercel serverless function
+  module.exports = app;
+} else {
+  // Start the server for local development
+  const server = app.listen(port, () => {
+    logger.info(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
+    logger.info(`API available at http://localhost:${port}/api`);
+    
+    // Check database connection
+    checkDatabaseConnection();
+  });
+  
+  // Graceful shutdown
+  process.on('SIGTERM', () => {
+    logger.info('SIGTERM signal received, shutting down gracefully');
+    server.close(() => {
+      logger.info('Server closed');
+      process.exit(0);
+    });
+  });
+}
+
+// In development, export the app for testing
+if (process.env.NODE_ENV === 'development') {
+  module.exports = app;
+} 
