@@ -97,6 +97,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const agentRoutes = require('./routes/agentRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Route mounting
 app.use('/api/cities', cityRoutes);
@@ -106,6 +107,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/agents', agentRoutes);
+app.use('/api/admin', adminRoutes);
 
 // 404 handler for unknown routes
 app.all('*', (req, res) => {
@@ -200,13 +202,22 @@ if (isVercel) {
       });
       
       // Graceful shutdown
-      process.on('SIGTERM', () => {
-        logger.info('SIGTERM signal received, shutting down gracefully');
+      const shutdown = () => {
+        logger.info('Graceful shutdown signal received, closing server');
         server.close(() => {
           logger.info('Server closed');
           process.exit(0);
         });
-      });
+        
+        // Force shutdown if server doesn't close in 10 seconds
+        setTimeout(() => {
+          logger.error('Server did not close gracefully within timeout, forcing shutdown');
+          process.exit(1);
+        }, 10000);
+      };
+      
+      process.on('SIGTERM', shutdown);
+      process.on('SIGINT', shutdown);
     } catch (error) {
       logger.error(`Failed to start server: ${error.message}`, { stack: error.stack });
       process.exit(1);
