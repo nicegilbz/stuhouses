@@ -1,28 +1,28 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-// Create Axios instance with default config
+// Create an axios instance with default config
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
-  withCredentials: true,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // Include cookies with cross-origin requests
 });
 
-// Request interceptor for adding auth token, etc.
+// Add request interceptor for auth token
 api.interceptors.request.use(
   (config) => {
-    // Get token from localStorage (if available)
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    // Get token from localStorage
+    const token = localStorage.getItem('auth_token');
     
-    // Add token to headers if exists
+    // If token exists, add to headers
     if (token) {
-      config.headers.Authorisation = `Bearer ${token}`;
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
     
-    // Add CSRF token if exists
-    const csrfToken = typeof window !== 'undefined' ? localStorage.getItem('csrfToken') : null;
+    // Check for CSRF token and add if available
+    const csrfToken = localStorage.getItem('csrf_token');
     if (csrfToken) {
       config.headers['X-CSRF-Token'] = csrfToken;
     }
@@ -34,88 +34,48 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor for handling errors
+// Add response interceptor for handling common errors
 api.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
-    let errorMessage = 'An error occurred. Please try again.';
-    
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      const { status, data } = error.response;
+    // Handle 401 Unauthorized
+    if (error.response && error.response.status === 401) {
+      // Clear stored tokens
+      localStorage.removeItem('auth_token');
       
-      if (status === 401) {
-        // Handle unauthorized (clear token and redirect to login)
-        if (typeof window !== 'undefined') {
-          localStorage.removeItem('token');
-          // Only redirect if we're in a browser context
-          if (window.location.pathname !== '/auth/login') {
-            window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname);
-          }
-        }
-        errorMessage = 'Please log in to continue.';
-      } else if (status === 403) {
-        // Handle forbidden
-        errorMessage = 'You do not have permission to perform this action.';
-      } else if (status === 404) {
-        // Handle not found
-        errorMessage = 'The requested resource was not found.';
-      } else if (status === 422 || status === 400) {
-        // Handle validation errors
-        errorMessage = data.message || 'Validation error. Please cheque your input.';
-        
-        // Display field errors if available
-        if (data.errors && Array.isArray(data.errors)) {
-          return Promise.reject({ 
-            message: errorMessage, 
-            fieldErrors: data.errors.reduce((acc, curr) => {
-              acc[curr.field] = curr.message;
-              return acc;
-            }, {})
-          });
-        }
-      } else if (status === 429) {
-        // Rate limiting
-        errorMessage = 'Too many requests. Please try again later.';
-      } else if (status >= 500) {
-        // Server errors
-        errorMessage = 'Server error. Please try again later.';
-        
-        // Log server errors to console in development
-        if (process.env.NODE_ENV !== 'production') {
-          console.error('Server Error:', data);
-        }
-      }
-      
-      // Use the server's error message if available
-      if (data && data.message) {
-        errorMessage = data.message;
-      }
-    } else if (error.request) {
-      // The request was made but no response was received
-      errorMessage = 'No response from server. Please cheque your connection.';
+      // Redirect to login if needed
+      // window.location.href = '/auth/login';
     }
     
-    // Toast error message (this can be conditional based on error type)
-    toast.error(errorMessage);
+    // Handle 403 Forbidden - access denied
+    if (error.response && error.response.status === 403) {
+      console.error('Access forbidden');
+    }
     
-    return Promise.reject({ message: errorMessage });
+    // Handle 500 server errors
+    if (error.response && error.response.status >= 500) {
+      console.error('Server error');
+    }
+    
+    return Promise.reject(error);
   }
 );
 
-/**
- * Fetch CSRF token
- */
+// Function to fetch CSRF token
 export const fetchCsrfToken = async () => {
   try {
-    const { data } = await api.get('/csrf-token');
-    if (data && data.csrfToken) {
-      localStorage.setItem('csrfToken', data.csrfToken);
-    }
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/csrf-token`, {
+      withCredentials: true,
+    });
+    
+    const token = response.data.csrfToken;
+    localStorage.setItem('csrf_token', token);
+    return token;
   } catch (error) {
     console.error('Failed to fetch CSRF token:', error);
+    return null;
   }
 };
 

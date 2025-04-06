@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import ErrorBoundary from '../components/ErrorBoundary';
 import Head from 'next/head';
 import { fetchCsrfToken } from '../utils/api';
-import authService from '../utils/auth';
+import { AuthProvider } from '../utils/authContext';
 
 function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -26,13 +26,6 @@ function MyApp({ Component, pageProps }) {
   // Fetch CSRF token on initial load
   useEffect(() => {
     fetchCsrfToken();
-    
-    // Cheque for current user
-    const checkAuth = async () => {
-      await authService.getCurrentUser();
-    };
-    
-    checkAuth();
   }, []);
 
   return (
@@ -43,33 +36,35 @@ function MyApp({ Component, pageProps }) {
       </Head>
       
       <ErrorBoundary>
-        <LanguageProvider>
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 5000,
-              style: {
-                background: '#363636',
-                color: '#fff',
-              },
-              success: {
-                duration: 3000,
-                theme: {
-                  primary: '#0052CC',
-                  secondary: '#4d94ff',
+        <AuthProvider>
+          <LanguageProvider>
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 5000,
+                style: {
+                  background: '#363636',
+                  colour: '#fff',
                 },
-              },
-              error: {
-                duration: 4000,
-                theme: {
-                  primary: '#FF5630',
-                  secondary: '#ffa28e',
+                success: {
+                  duration: 3000,
+                  theme: {
+                    primary: '#0052CC',
+                    secondary: '#4d94ff',
+                  },
                 },
-              },
-            }}
-          />
-          {getLayout(<Component {...pageProps} />)}
-        </LanguageProvider>
+                error: {
+                  duration: 4000,
+                  theme: {
+                    primary: '#FF5630',
+                    secondary: '#ffa28e',
+                  },
+                },
+              }}
+            />
+            {getLayout(<Component {...pageProps} />)}
+          </LanguageProvider>
+        </AuthProvider>
       </ErrorBoundary>
     </>
   );

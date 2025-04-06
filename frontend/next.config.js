@@ -40,8 +40,8 @@ const nextConfig = {
     defaultLocale: 'en-GB',
     // List of supported locales
     locales: ['en-GB', 'es', 'fr', 'it', 'zh', 'he'],
-    // Detect user language preferences
-    localeDetection: true,
+    // Set localeDetection to false to avoid the error
+    localeDetection: false,
   },
 }
 
