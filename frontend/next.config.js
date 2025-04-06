@@ -34,9 +34,15 @@ const nextConfig = {
       fullUrl: true,
     },
   },
-  // Using built-in i18n is less recommended with app router
-  // We'll implement i18n via our custom solution instead
-  i18n: null,
+  // Configure i18n to use English UK as default
+  i18n: {
+    // Default locale is English UK
+    defaultLocale: 'en-GB',
+    // List of supported locales
+    locales: ['en-GB', 'es', 'fr', 'it', 'zh', 'he'],
+    // Detect user language preferences
+    localeDetection: true,
+  },
 }
 
 module.exports = nextConfig 

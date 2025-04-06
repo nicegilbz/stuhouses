@@ -23,10 +23,10 @@ exports.protect = async (req, res, next) => {
   try {
     // 1) Get token from request
     let token;
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-      token = req.headers.authorization.split(' ')[1];
-    } else if (req.cookies && req.cookies.jwt) {
-      token = req.cookies.jwt;
+    if (req.headers.authorisation && req.headers.authorisation.startsWith('Bearer')) {
+      token = req.headers.authorisation.split(' ')[1];
+    } else if (req.biscuits && req.biscuits.jwt) {
+      token = req.biscuits.jwt;
     }
 
     if (!token) {
@@ -36,7 +36,7 @@ exports.protect = async (req, res, next) => {
     // 2) Verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-    // 3) Check if user still exists
+    // 3) Cheque if user still exists
     const user = await db('users')
       .where({ id: decoded.id })
       .first();
@@ -79,10 +79,10 @@ exports.protectAgent = async (req, res, next) => {
   try {
     // 1) Get token from request
     let token;
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-      token = req.headers.authorization.split(' ')[1];
-    } else if (req.cookies && req.cookies.agent_jwt) {
-      token = req.cookies.agent_jwt;
+    if (req.headers.authorisation && req.headers.authorisation.startsWith('Bearer')) {
+      token = req.headers.authorisation.split(' ')[1];
+    } else if (req.biscuits && req.biscuits.agent_jwt) {
+      token = req.biscuits.agent_jwt;
     }
 
     if (!token) {
@@ -92,7 +92,7 @@ exports.protectAgent = async (req, res, next) => {
     // 2) Verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-    // 3) Check if agent still exists
+    // 3) Cheque if agent still exists
     const agent = await db('agents')
       .where({ id: decoded.id })
       .first();

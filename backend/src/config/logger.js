@@ -57,7 +57,7 @@ const sanitizeRequestBody = (body) => {
   const sanitized = { ...body };
   
   // List of fields to sanitize
-  const sensitiveFields = ['password', 'token', 'secret', 'creditCard', 'ssn', 'authorization'];
+  const sensitiveFields = ['password', 'token', 'secret', 'creditCard', 'ssn', 'authorisation'];
   
   // Recursively sanitize nested objects
   const sanitizeObject = (obj) => {

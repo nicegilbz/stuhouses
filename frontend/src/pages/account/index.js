@@ -60,7 +60,7 @@ export default function Account() {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
         
-        // Check if user is logged in
+        // Cheque if user is logged in
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         
         if (!isLoggedIn) {
@@ -178,7 +178,7 @@ export default function Account() {
           {/* Sidebar Navigation */}
           <div className="md:w-1/4">
             <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6 border-b border-gray-200">
+              <div className="p-6 border-b border-grey-200">
                 <div className="flex items-center space-x-4">
                   <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
                     {user.firstName.charAt(0)}{user.lastName.charAt(0)}
@@ -204,7 +204,7 @@ export default function Account() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
+                    className={`flex items-center px-4 py-2 rounded-lg transition-colours ${
                       item.current
                         ? 'bg-primary/10 text-primary font-medium'
                         : 'text-neutral-dark hover:bg-neutral-light'
@@ -217,7 +217,7 @@ export default function Account() {
                 
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center px-4 py-2 rounded-lg text-neutral-dark hover:bg-neutral-light transition-colors mt-4"
+                  className="w-full flex items-center px-4 py-2 rounded-lg text-neutral-dark hover:bg-neutral-light transition-colours mt-4"
                 >
                   <ArrowRightOnRectangleIcon className="h-5 w-5 mr-3 flex-shrink-0" />
                   <span>Log Out</span>
@@ -229,7 +229,7 @@ export default function Account() {
           {/* Main Content */}
           <div className="md:w-3/4">
             <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="p-6 border-b border-gray-200">
+              <div className="p-6 border-b border-grey-200">
                 <h2 className="text-xl font-bold">Profile Information</h2>
                 <p className="text-neutral">Update your personal information and preferences</p>
               </div>
@@ -273,7 +273,7 @@ export default function Account() {
                       Email Address
                     </label>
                     <div className="flex">
-                      <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+                      <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-grey-300 bg-grey-50 text-grey-500">
                         <EnvelopeIcon className="h-5 w-5" />
                       </span>
                       <input
@@ -303,7 +303,7 @@ export default function Account() {
                   </div>
                 </div>
                 
-                <div className="border-t border-gray-200 pt-6 mt-6">
+                <div className="border-t border-grey-200 pt-6 mt-6">
                   <h3 className="font-bold mb-4">Student Information</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -371,7 +371,7 @@ export default function Account() {
             
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                <div className="p-6 border-b border-gray-200">
+                <div className="p-6 border-b border-grey-200">
                   <div className="flex justify-between items-center">
                     <h3 className="font-bold">Account Security</h3>
                     <Link href="/account/security" className="text-primary hover:text-primary-700 text-sm">
@@ -400,7 +400,7 @@ export default function Account() {
               </div>
               
               <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                <div className="p-6 border-b border-gray-200">
+                <div className="p-6 border-b border-grey-200">
                   <div className="flex justify-between items-center">
                     <h3 className="font-bold">Communication Preferences</h3>
                     <Link href="/account/notifications" className="text-primary hover:text-primary-700 text-sm">

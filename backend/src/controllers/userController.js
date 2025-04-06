@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
       });
     }
     
-    // Check if user already exists
+    // Cheque if user already exists
     const existingUser = await db('users')
       .where({ email })
       .first();
@@ -108,7 +108,7 @@ exports.login = async (req, res) => {
       });
     }
     
-    // Check if user exists
+    // Cheque if user exists
     const user = await db('users')
       .where({ email })
       .first();
@@ -120,7 +120,7 @@ exports.login = async (req, res) => {
       });
     }
     
-    // Check if password is correct
+    // Cheque if password is correct
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({
@@ -325,7 +325,7 @@ exports.forgotPassword = async (req, res) => {
       });
     }
     
-    // Check if user exists
+    // Cheque if user exists
     const user = await db('users')
       .where({ email })
       .first();
@@ -581,7 +581,7 @@ exports.changePassword = async (req, res) => {
       .where({ id: userId })
       .first();
     
-    // Check if current password is correct
+    // Cheque if current password is correct
     const isMatch = await bcrypt.compare(current_password, user.password);
     if (!isMatch) {
       return res.status(400).json({
@@ -673,7 +673,7 @@ exports.createInquiry = async (req, res) => {
       });
     }
     
-    // Check if property exists
+    // Cheque if property exists
     const property = await db('properties')
       .where({ id: property_id })
       .first();

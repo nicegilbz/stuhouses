@@ -25,7 +25,7 @@ export default function Properties() {
   const router = useRouter();
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [favorites, setFavorites] = useState([]);
+  const [favourites, setFavorites] = useState([]);
   const [filters, setFilters] = useState({
     city: '',
     bedrooms: '',
@@ -345,7 +345,7 @@ export default function Properties() {
                     type="checkbox"
                     checked={filters.billsIncluded}
                     onChange={handleFilterChange}
-                    className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                    className="h-4 w-4 text-primary focus:ring-primary border-grey-300 rounded"
                   />
                   <label htmlFor="billsIncluded" className="ml-2 block text-sm text-neutral">
                     Bills Included Only
@@ -417,9 +417,9 @@ export default function Properties() {
                   <button
                     onClick={() => toggleFavorite(property.id)}
                     className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:scale-105 transition-transform"
-                    aria-label={favorites.includes(property.id) ? 'Remove from favorites' : 'Add to favorites'}
+                    aria-label={favourites.includes(property.id) ? 'Remove from favourites' : 'Add to favourites'}
                   >
-                    {favorites.includes(property.id) ? (
+                    {favourites.includes(property.id) ? (
                       <HeartIconSolid className="h-5 w-5 text-secondary" />
                     ) : (
                       <HeartIcon className="h-5 w-5 text-neutral" />
@@ -432,7 +432,7 @@ export default function Properties() {
 
                 <div className="p-4">
                   <Link href={`/properties/${property.city.toLowerCase()}/${property.slug}`}>
-                    <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colours">
                       {property.title}
                     </h3>
                   </Link>
@@ -459,7 +459,7 @@ export default function Properties() {
                   </div>
                   
                   {property.bills_included && (
-                    <div className="border-t border-gray-200 pt-3 mt-3">
+                    <div className="border-t border-grey-200 pt-3 mt-3">
                       <p className="text-sm font-medium text-neutral-dark mb-2">Bills Included:</p>
                       <div className="flex flex-wrap gap-2">
                         {property.has_electricity && (
@@ -484,7 +484,7 @@ export default function Properties() {
                     </div>
                   )}
                   
-                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
+                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-grey-200">
                     <div className="text-sm text-neutral">
                       <span className="block">Available from</span>
                       <span className="font-medium text-neutral-dark">
@@ -497,7 +497,7 @@ export default function Properties() {
                     </div>
                     <Link 
                       href={`/properties/${property.city.toLowerCase()}/${property.slug}`} 
-                      className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colors"
+                      className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colours"
                     >
                       View Property
                       <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -526,7 +526,7 @@ export default function Properties() {
             </svg>
             <h3 className="text-xl font-bold mb-2">No Properties Found</h3>
             <p className="text-neutral mb-4">
-              We couldn't find any properties matching your criteria. Try adjusting your filters or check back later.
+              We couldn't find any properties matching your criteria. Try adjusting your filters or cheque back later.
             </p>
             <button 
               onClick={resetFilters} 

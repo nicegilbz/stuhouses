@@ -241,7 +241,7 @@ export default function PropertyDetails() {
       {/* Back Button */}
       <div className="bg-neutral-light py-4">
         <div className="container mx-auto px-4">
-          <Link href={`/properties/${city}`} className="inline-flex items-center text-neutral-dark hover:text-primary transition-colors">
+          <Link href={`/properties/${city}`} className="inline-flex items-center text-neutral-dark hover:text-primary transition-colours">
             <ChevronLeftIcon className="h-5 w-5 mr-1" />
             Back to {city} Properties
           </Link>
@@ -441,7 +441,7 @@ export default function PropertyDetails() {
                 )}
               </div>
               
-              <div className="border-t border-gray-200 pt-4 mb-4">
+              <div className="border-t border-grey-200 pt-4 mb-4">
                 <div className="flex justify-between mb-2">
                   <span className="text-neutral">Deposit</span>
                   <span className="font-medium">£{property.price_per_person_per_week * 4}</span>
@@ -621,7 +621,7 @@ export default function PropertyDetails() {
                 <button
                   type="button"
                   onClick={() => setShowEnquireModal(false)}
-                  className="px-6 py-2 border border-gray-300 rounded-lg text-neutral-dark hover:bg-neutral-light transition-colors"
+                  className="px-6 py-2 border border-grey-300 rounded-lg text-neutral-dark hover:bg-neutral-light transition-colours"
                 >
                   Cancel
                 </button>

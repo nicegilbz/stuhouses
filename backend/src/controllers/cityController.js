@@ -101,7 +101,7 @@ exports.getPropertiesByCity = async (req, res) => {
   try {
     const { slug } = req.params;
     
-    // Check if city exists
+    // Cheque if city exists
     const city = await db('cities')
       .where({ slug })
       .first();
@@ -142,7 +142,7 @@ exports.getUniversitiesByCity = async (req, res) => {
   try {
     const { slug } = req.params;
     
-    // Check if city exists
+    // Cheque if city exists
     const city = await db('cities')
       .where({ slug })
       .first();

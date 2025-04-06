@@ -18,10 +18,10 @@ const faqCategories = [
             <p>University accommodation can be halls of residence ('halls'), similar to blocks of flats, or a range of smaller houses.</p>
             <p>Uni accommodation tends to include: a fully furnished bedroom, a shared kitchen and bathroom facilities. Each student flat usually contains around five to eight bedrooms, so you'll be sharing the kitchen and bathroom facilities with about four to seven other students. At most unis, you'll be able to choose whether you have a shared bathroom or an en-suite.</p>
             <p>This accommodation can be catered, which means meals will be provided for you on certain days at set times. Most accommodation is self-catered, meaning you're in charge of feeding yourself. In catered accommodation, you'll only have access to basic kitchen facilities, whereas in a self-catered flat you can expect to have a fully-equipped kitchen.</p>
-            <p>Uni accommodation often requires termly payments with bills included but check this before you sign a contract. You'll find that costs vary depending on whether you choose a standard, en-suite or luxury studio room.</p>
+            <p>Uni accommodation often requires termly payments with bills included but cheque this before you sign a contract. You'll find that costs vary depending on whether you choose a standard, en-suite or luxury studio room.</p>
             
             <h4 className="font-bold">Private accommodation</h4>
-            <p>Private accommodation can either be privately-run halls of residence or a room in a normal flat or house run by a landlord. You'll pay rent in term or monthly instalments. Check whether bills are included or separate before you sign the contract.</p>
+            <p>Private accommodation can either be privately-run halls of residence or a room in a normal flat or house run by a landlord. You'll pay rent in term or monthly instalments. Cheque whether bills are included or separate before you sign the contract.</p>
             <p>You could be sharing with students from other universities too. This is because the halls won't be exclusively owned by your uni.</p>
             <p>Living in private accommodation is what students tend to do in their second year at uni. Ask your uni for a list of recommended landlords if you don't want to live in halls. This will ensure that you're living in a property with a landlord who will look after you.</p>
           </div>
@@ -31,7 +31,7 @@ const faqCategories = [
         question: "When should you start looking for student accommodation?",
         answer: (
           <div>
-            <p>It's never too early. Look at what student accommodation is being offered when you begin researching where to study. Check the cost and whether you'd enjoy living there. Visit the accommodation too on open days, and order the university's prospectus to learn more.</p>
+            <p>It's never too early. Look at what student accommodation is being offered when you begin researching where to study. Cheque the cost and whether you'd enjoy living there. Visit the accommodation too on open days, and order the university's prospectus to learn more.</p>
           </div>
         )
       },
@@ -57,7 +57,7 @@ const faqCategories = [
         question: "When do you apply for student accommodation?",
         answer: (
           <div>
-            <p>Every uni will set a deadline for accommodation applications. Check what these are as soon as you know which courses you're applying for. You can do this by checking the university's website or contacting their admissions team.</p>
+            <p>Every uni will set a deadline for accommodation applications. Cheque what these are as soon as you know which courses you're applying for. You can do this by current the university's website or contacting their admissions team.</p>
             <p>You can normally only apply for housing at your firm choice. Sometimes your insurance choices will let you reserve a room, so it's worth asking. That way if you end up at your insurance choice you won't have to worry about where you're going to live. Many universities will also reserve accommodation places for Clearing students.</p>
             <p>We suggest not leaving it until the night before to send your application. The earlier, the better.</p>
             <p>Private accommodation won't have fixed deadlines, so it depends on the city you're going to uni in as the housing market moves faster in some areas than others. You can reach out to the uni's accommodation team for advice on private accommodation in the local area.</p>
@@ -114,7 +114,7 @@ const faqCategories = [
                     <th className="py-3 px-4 text-left">Catering</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-grey-200">
                   <tr>
                     <td className="py-3 px-4">Standard Hall</td>
                     <td className="py-3 px-4">Single</td>
@@ -159,7 +159,7 @@ const faqCategories = [
         answer: (
           <div>
             <p>Taking out home and contents insurance is a great idea, particularly if you're sharing a house. Paying a little bit of money every month will mean if your things are stolen, lost or broken, you're covered.</p>
-            <p>Check with your university or landlord to see if insurance is already included within your contract. Many university halls have their own insurance to cover your possessions, and if you're living in a privately rented house or flat, the buildings insurance should be arranged by your landlord.</p>
+            <p>Cheque with your university or landlord to see if insurance is already included within your contract. Many university halls have their own insurance to cover your possessions, and if you're living in a privately rented house or flat, the buildings insurance should be arranged by your landlord.</p>
           </div>
         )
       }
@@ -172,7 +172,7 @@ const faqCategories = [
         question: "Can you stay in your student accommodation during the holidays?",
         answer: (
           <div>
-            <p>This will depend on your university and the accommodation. Check your accommodation contract carefully to see how many weeks you're allowed to stay there. Many universities now guarantee accommodation for 365 days a year so that you don't need to move out on holidays.</p>
+            <p>This will depend on your university and the accommodation. Cheque your accommodation contract carefully to see how many weeks you're allowed to stay there. Many universities now guarantee accommodation for 365 days a year so that you don't need to move out on holidays.</p>
           </div>
         )
       },
@@ -181,7 +181,7 @@ const faqCategories = [
         answer: (
           <div>
             <p>University accommodation tends to give you the basics before you move in. You won't need to bring things like a bed, a wardrobe, or fit an entire oven in the back seat of your parent's car. Smaller things like general kitchenware are good to bring.</p>
-            <p>Check on your university's website to see what's provided. While some will give you a desk to work on and a large pinboard, others may give you a small bedside table as a desk and tell you not to hang posters.</p>
+            <p>Cheque on your university's website to see what's provided. While some will give you a desk to work on and a large pinboard, others may give you a small bedside table as a desk and tell you not to hang posters.</p>
           </div>
         )
       },
@@ -189,7 +189,7 @@ const faqCategories = [
         question: "What can't you bring to student accommodation?",
         answer: (
           <div>
-            <p>Your university will provide a list. If you're not sure whether you can take an item, check with your university or accommodation provider.</p>
+            <p>Your university will provide a list. If you're not sure whether you can take an item, cheque with your university or accommodation provider.</p>
           </div>
         )
       },
@@ -211,7 +211,7 @@ const faqCategories = [
         question: "Can you get student accommodation as an apprentice?",
         answer: (
           <div>
-            <p>This will depend on your university if you're studying for a degree apprenticeship. Check with them to see whether you can still apply for student accommodation. Employers don't tend to offer accommodation.</p>
+            <p>This will depend on your university if you're studying for a degree apprenticeship. Cheque with them to see whether you can still apply for student accommodation. Employers don't tend to offer accommodation.</p>
           </div>
         )
       },
@@ -286,7 +286,7 @@ export default function FAQ() {
           {faqCategories.map((category, index) => (
             <button
               key={index}
-              className={`px-4 py-2 rounded-full text-sm md:text-base font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full text-sm md:text-base font-medium transition-colours ${
                 openCategory === index
                   ? 'bg-primary text-white'
                   : 'bg-neutral-light text-neutral-dark hover:bg-primary-50'

@@ -6,18 +6,18 @@ const { logger, logError, logPerformance } = require('../config/logger');
  * Handles all admin-related operations for the content management system
  */
 
-// Helper function to check admin role
+// Helper function to cheque admin role
 const checkAdminRole = async (req, res) => {
   const { user } = req;
   
   if (!user) {
     return res.status(401).json({
       status: 'fail',
-      message: 'You are not authorized to access this resource'
+      message: 'You are not authorised to access this resource'
     });
   }
   
-  // Check if user has admin role
+  // Cheque if user has admin role
   if (user.role !== 'admin') {
     return res.status(403).json({
       status: 'fail',
@@ -33,7 +33,7 @@ exports.getDashboardStats = async (req, res) => {
   try {
     const startTime = Date.now();
     
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
 
@@ -85,7 +85,7 @@ exports.getDashboardStats = async (req, res) => {
 // Properties
 exports.getAllProperties = async (req, res) => {
   try {
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
     
@@ -145,7 +145,7 @@ exports.getAllProperties = async (req, res) => {
 
 exports.getProperty = async (req, res) => {
   try {
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
 
@@ -200,7 +200,7 @@ exports.getProperty = async (req, res) => {
 
 exports.createProperty = async (req, res) => {
   try {
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
 
@@ -308,7 +308,7 @@ exports.createProperty = async (req, res) => {
 
 exports.updateProperty = async (req, res) => {
   try {
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
 
@@ -336,7 +336,7 @@ exports.updateProperty = async (req, res) => {
     const trx = await db.transaction();
     
     try {
-      // Check if property exists
+      // Cheque if property exists
       const property = await trx('properties').where('id', id).first();
       
       if (!property) {
@@ -439,7 +439,7 @@ exports.updateProperty = async (req, res) => {
 
 exports.deleteProperty = async (req, res) => {
   try {
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
 
@@ -449,7 +449,7 @@ exports.deleteProperty = async (req, res) => {
     const trx = await db.transaction();
     
     try {
-      // Check if property exists
+      // Cheque if property exists
       const property = await trx('properties').where('id', id).first();
       
       if (!property) {
@@ -503,7 +503,7 @@ exports.deleteProperty = async (req, res) => {
 // Cities
 exports.getAllCities = async (req, res) => {
   try {
-    // Check admin role
+    // Cheque admin role
     const roleError = await checkAdminRole(req, res);
     if (roleError) return;
     

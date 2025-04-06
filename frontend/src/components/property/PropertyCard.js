@@ -39,15 +39,15 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
               className="group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-              <HomeIcon className="h-16 w-16 text-gray-400" />
+            <div className="w-full h-full bg-grey-200 flex items-center justify-center">
+              <HomeIcon className="h-16 w-16 text-grey-400" />
             </div>
           )}
         </div>
 
         {/* Favorite Button */}
         <button
-          className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors"
+          className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-grey-100 transition-colours"
           onClick={handleFavoriteClick}
           aria-label={isFavorited ? "Remove from shortlist" : "Add to shortlist"}
         >
@@ -67,7 +67,7 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
       {/* Property Details */}
       <div className="p-4">
         <Link href={`/properties/${property.slug}`} className="block">
-          <h3 className="text-xl font-bold text-neutral-dark mb-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold text-neutral-dark mb-2 group-hover:text-primary transition-colours">
             {property.title}
           </h3>
           
@@ -89,7 +89,7 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
           
           {/* Utilities Included */}
           {property.bills_included && (
-            <div className="border-t border-gray-200 pt-3 mt-3">
+            <div className="border-t border-grey-200 pt-3 mt-3">
               <p className="text-sm font-medium text-neutral-dark mb-2">Bills Included:</p>
               <div className="flex flex-wrap gap-2">
                 {property.has_electricity && (
@@ -116,14 +116,14 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
         </Link>
 
         {/* Agent Info & View Button */}
-        <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
+        <div className="flex items-center justify-between mt-4 pt-3 border-t border-grey-200">
           <div className="text-sm text-neutral">
             <span className="block">Listed by</span>
             <span className="font-medium text-neutral-dark">{property.agent_name}</span>
           </div>
           <Link 
             href={`/properties/${property.slug}`} 
-            className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colors"
+            className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colours"
           >
             View Property
             <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

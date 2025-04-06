@@ -1,34 +1,34 @@
 {
   "name": "stuhouses",
   "version": "1.0.0",
-  "description": "Student housing platform with multilingual support",
-  "main": "index.js",
+  "description": "Student accommodation platform with bills included",
   "scripts": {
-    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "start:frontend": "cd frontend && npm run start",
-    "start:backend": "cd backend && npm run start",
-    "dev:frontend": "cd frontend && npm run dev",
+    "setup": "./database_setup.sh",
+    "deploy": "./deploy.sh",
     "dev:backend": "cd backend && npm run dev",
-    "build": "concurrently \"npm run build:frontend\" \"npm run build:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build:backend": "cd backend && npm run build",
     "build:frontend": "cd frontend && npm run build",
-    "build:backend": "cd backend && npm install",
-    "install:all": "npm install && concurrently \"npm run install:frontend\" \"npm run install:backend\"",
-    "install:frontend": "cd frontend && npm install",
-    "install:backend": "cd backend && npm install",
-    "clean": "rm -rf node_modules && rm -rf frontend/node_modules && rm -rf backend/node_modules"
+    "build": "npm run build:backend && npm run build:frontend",
+    "uk-english": "npm install chalk && ./standardize-uk-english.js",
+    "postinstall": "npm install chalk"
   },
   "keywords": [
     "student",
     "accommodation",
-    "housing",
-    "multilingual",
-    "next.js",
-    "express"
+    "nextjs",
+    "react",
+    "express",
+    "postgresql"
   ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
   }
 } 

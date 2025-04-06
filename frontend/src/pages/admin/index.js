@@ -80,12 +80,12 @@ export default function AdminDashboard() {
   return (
     <AdminLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-grey-900">Dashboard</h1>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Stats Cards */}
         <div className="mt-8">
-          <h2 className="text-lg leading-6 font-medium text-gray-900">Overview</h2>
+          <h2 className="text-lg leading-6 font-medium text-grey-900">Overview</h2>
           <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {isLoading ? (
               // Loading skeleton
@@ -93,10 +93,10 @@ export default function AdminDashboard() {
                 <div key={i} className="bg-white overflow-hidden shadow rounded-lg">
                   <div className="p-5">
                     <div className="animate-pulse flex space-x-4">
-                      <div className="rounded-full bg-gray-200 h-12 w-12"></div>
+                      <div className="rounded-full bg-grey-200 h-12 w-12"></div>
                       <div className="flex-1 space-y-4 py-1">
-                        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                        <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                        <div className="h-4 bg-grey-200 rounded w-3/4"></div>
+                        <div className="h-4 bg-grey-200 rounded w-1/2"></div>
                       </div>
                     </div>
                   </div>
@@ -117,11 +117,11 @@ export default function AdminDashboard() {
                       </div>
                       <div className="ml-5 w-0 flex-1">
                         <dl>
-                          <dt className="text-sm font-medium text-gray-500 truncate">
+                          <dt className="text-sm font-medium text-grey-500 truncate">
                             {item.name}
                           </dt>
                           <dd>
-                            <div className="text-lg font-medium text-gray-900">
+                            <div className="text-lg font-medium text-grey-900">
                               {item.count}
                             </div>
                           </dd>
@@ -138,48 +138,48 @@ export default function AdminDashboard() {
         {/* Recent Activity */}
         <div className="mt-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg leading-6 font-medium text-gray-900">Recent Activity</h2>
+            <h2 className="text-lg leading-6 font-medium text-grey-900">Recent Activity</h2>
             <Link href="/admin/activity" className="text-sm text-primary hover:text-primary-dark">
               View all
             </Link>
           </div>
           <div className="mt-2 bg-white shadow overflow-hidden sm:rounded-md">
-            <ul role="list" className="divide-y divide-gray-200">
+            <ul role="list" className="divide-y divide-grey-200">
               {isLoading ? (
                 // Loading skeleton
                 Array(5).fill(0).map((_, i) => (
                   <li key={i} className="px-4 py-4 sm:px-6">
                     <div className="animate-pulse flex items-center justify-between">
                       <div className="flex-1">
-                        <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                        <div className="h-4 bg-grey-200 rounded w-3/4 mb-2"></div>
+                        <div className="h-3 bg-grey-200 rounded w-1/2"></div>
                       </div>
-                      <div className="h-3 bg-gray-200 rounded w-24"></div>
+                      <div className="h-3 bg-grey-200 rounded w-24"></div>
                     </div>
                   </li>
                 ))
               ) : activities.length > 0 ? (
                 // Actual activity data
                 activities.map((activity) => (
-                  <li key={activity.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50">
+                  <li key={activity.id} className="px-4 py-4 sm:px-6 hover:bg-grey-50">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <p className="text-sm font-medium text-primary truncate">
                           {activity.user} {activity.action} {activity.resourceType}{' '}
                           <span className="font-semibold">{activity.resourceName}</span>
                         </p>
-                        <p className="mt-1 text-xs text-gray-500">
+                        <p className="mt-1 text-xs text-grey-500">
                           {new Date(activity.date).toLocaleString()}
                         </p>
                       </div>
-                      <div className="ml-2 flex-shrink-0 text-sm text-gray-500">
+                      <div className="ml-2 flex-shrink-0 text-sm text-grey-500">
                         {formatRelativeTime(activity.date)}
                       </div>
                     </div>
                   </li>
                 ))
               ) : (
-                <li className="px-4 py-5 sm:px-6 text-center text-gray-500">
+                <li className="px-4 py-5 sm:px-6 text-center text-grey-500">
                   No recent activity found
                 </li>
               )}

@@ -160,7 +160,7 @@ export default function TermsAndConditions() {
             </address>
           </div>
           
-          <div className="mt-8 pt-6 border-t border-gray-200">
+          <div className="mt-8 pt-6 border-t border-grey-200">
             <Link href="/privacy-policy" className="text-primary hover:text-primary-700 font-medium">
               Read our Privacy Policy
             </Link>

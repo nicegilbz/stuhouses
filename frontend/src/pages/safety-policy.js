@@ -191,7 +191,7 @@ export default function SafetyPolicy() {
               <li>Follow guidelines for the safe use of electrical appliances</li>
               <li>Ensure doors and windows are locked when leaving the property</li>
               <li>Do not share access codes or keys with non-residents</li>
-              <li>Be mindful of noise levels and consider neighbors, especially at night</li>
+              <li>Be mindful of noise levels and consider neighbours, especially at night</li>
             </ul>
             
             <p className="text-neutral-dark">

@@ -5,16 +5,16 @@ import acceptLanguage from 'accept-language';
 
 // Supported languages with their locale codes
 export const languages = {
-  en: { name: 'English', dir: 'ltr', flag: '🇬🇧' },
-  es: { name: 'Español', dir: 'ltr', flag: '🇪🇸' },
-  fr: { name: 'Français', dir: 'ltr', flag: '🇫🇷' },
-  it: { name: 'Italiano', dir: 'ltr', flag: '🇮🇹' },
-  zh: { name: '中文', dir: 'ltr', flag: '🇨🇳' },
-  he: { name: 'עברית', dir: 'rtl', flag: '🇮🇱' },
+  'en-GB': { name: 'English (UK)', dir: 'ltr', flag: '🇬🇧' },
+  'es': { name: 'Español', dir: 'ltr', flag: '🇪🇸' },
+  'fr': { name: 'Français', dir: 'ltr', flag: '🇫🇷' },
+  'it': { name: 'Italiano', dir: 'ltr', flag: '🇮🇹' },
+  'zh': { name: '中文', dir: 'ltr', flag: '🇨🇳' },
+  'he': { name: 'עברית', dir: 'rtl', flag: '🇮🇱' },
 };
 
-// Default language
-export const defaultLanguage = 'en';
+// Default language is English UK
+export const defaultLanguage = 'en-GB';
 
 // Set up accept-language to detect preferred languages
 acceptLanguage.languages(Object.keys(languages));
@@ -26,7 +26,7 @@ export const LanguageContext = createContext({
   dir: languages[defaultLanguage].dir,
 });
 
-// Initialize i18next
+// Initialize i18next with English UK as default
 i18next.use(initReactI18next).init({
   lng: defaultLanguage,
   fallbackLng: defaultLanguage,
@@ -41,10 +41,10 @@ export const useLanguage = () => useContext(LanguageContext);
 
 // Language provider component
 export function LanguageProvider({ children }) {
-  // Default to browser language or fallback to English
+  // Default to browser language or fallback to English UK
   const [language, setLanguageState] = useState(defaultLanguage);
   const [dir, setDir] = useState(languages[defaultLanguage].dir);
-  const [initialized, setInitialized] = useState(false);
+  const [initialised, setInitialized] = useState(false);
 
   // Function to set a new language
   const setLanguage = (newLanguage) => {
@@ -75,25 +75,33 @@ export function LanguageProvider({ children }) {
 
   // Detect browser language on initial load
   useEffect(() => {
-    if (!initialized) {
-      // First check localStorage for user preference
+    if (!initialised) {
+      // First cheque localStorage for user preference
       const storedLanguage = localStorage.getItem('preferred-language');
       
       if (storedLanguage && languages[storedLanguage]) {
         setLanguage(storedLanguage);
       } else {
-        // Then try to detect from browser
-        const browserLanguage = 
-          typeof navigator !== 'undefined' 
-            ? acceptLanguage.get(navigator.language) || defaultLanguage
-            : defaultLanguage;
+        // Then try to detect from browser, prioritise en-GB over other English variants
+        let browserLanguage = defaultLanguage;
+        
+        if (typeof navigator !== 'undefined') {
+          const navLang = navigator.language;
+          if (navLang && navLang.startsWith('en')) {
+            // Force English variants to use UK English
+            browserLanguage = 'en-GB';
+          } else {
+            // For non-English languages, use accept-language to find the best match
+            browserLanguage = acceptLanguage.get(navLang) || defaultLanguage;
+          }
+        }
             
         setLanguage(browserLanguage);
       }
       
       setInitialized(true);
     }
-  }, [initialized]);
+  }, [initialised]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, dir }}>

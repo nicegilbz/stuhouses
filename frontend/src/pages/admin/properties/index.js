@@ -205,8 +205,8 @@ export default function AdminProperties() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-2xl font-semibold text-gray-900">Properties</h1>
-            <p className="mt-2 text-sm text-gray-700">
+            <h1 className="text-2xl font-semibold text-grey-900">Properties</h1>
+            <p className="mt-2 text-sm text-grey-700">
               Manage all properties listed on the platform.
             </p>
           </div>
@@ -226,16 +226,16 @@ export default function AdminProperties() {
           {/* Status Filter */}
           <div className="relative sm:w-48 sm:mr-4">
             <div className="flex items-center">
-              <FunnelIcon className="h-5 w-5 text-gray-400 mr-2" />
+              <FunnelIcon className="h-5 w-5 text-grey-400 mr-2" />
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="block w-full py-2 pl-3 pr-10 text-base border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className="block w-full py-2 pl-3 pr-10 text-base border-grey-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
-                <option value="draft">Draft</option>
+                <option value="draught">Draught</option>
               </select>
             </div>
           </div>
@@ -243,14 +243,14 @@ export default function AdminProperties() {
           {/* Search */}
           <div className="mt-4 sm:mt-0 relative flex-grow">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="h-5 w-5 text-grey-400" />
             </div>
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search properties..."
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+              className="block w-full pl-10 pr-3 py-2 border border-grey-300 rounded-md leading-5 bg-white placeholder-grey-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
             />
           </div>
         </div>
@@ -259,52 +259,52 @@ export default function AdminProperties() {
         <div className="mt-6 flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+              <div className="shadow overflow-hidden border-b border-grey-200 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-grey-200">
+                  <thead className="bg-grey-50">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-grey-500 uppercase tracking-wider"
                         onClick={() => handleSort('title')}
                       >
-                        <div className="flex items-center cursor-pointer hover:text-gray-700">
+                        <div className="flex items-center cursor-pointer hover:text-grey-700">
                           Property
                           {renderSortIndicator('title')}
                         </div>
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-grey-500 uppercase tracking-wider"
                         onClick={() => handleSort('price')}
                       >
-                        <div className="flex items-center cursor-pointer hover:text-gray-700">
+                        <div className="flex items-center cursor-pointer hover:text-grey-700">
                           Price
                           {renderSortIndicator('price')}
                         </div>
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-grey-500 uppercase tracking-wider"
                         onClick={() => handleSort('city')}
                       >
-                        <div className="flex items-center cursor-pointer hover:text-gray-700">
+                        <div className="flex items-center cursor-pointer hover:text-grey-700">
                           City
                           {renderSortIndicator('city')}
                         </div>
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-grey-500 uppercase tracking-wider"
                       >
                         Status
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-grey-500 uppercase tracking-wider"
                         onClick={() => handleSort('created_at')}
                       >
-                        <div className="flex items-center cursor-pointer hover:text-gray-700">
+                        <div className="flex items-center cursor-pointer hover:text-grey-700">
                           Date Added
                           {renderSortIndicator('created_at')}
                         </div>
@@ -314,37 +314,37 @@ export default function AdminProperties() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-grey-200">
                     {isLoading ? (
                       // Loading skeletons
                       Array(5).fill(0).map((_, i) => (
                         <tr key={i}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
-                              <div className="animate-pulse h-10 w-10 bg-gray-200 rounded-md mr-4"></div>
-                              <div className="animate-pulse h-4 w-40 bg-gray-200 rounded"></div>
+                              <div className="animate-pulse h-10 w-10 bg-grey-200 rounded-md mr-4"></div>
+                              <div className="animate-pulse h-4 w-40 bg-grey-200 rounded"></div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="animate-pulse h-4 w-16 bg-gray-200 rounded"></div>
+                            <div className="animate-pulse h-4 w-16 bg-grey-200 rounded"></div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="animate-pulse h-4 w-20 bg-gray-200 rounded"></div>
+                            <div className="animate-pulse h-4 w-20 bg-grey-200 rounded"></div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="animate-pulse h-4 w-16 bg-gray-200 rounded"></div>
+                            <div className="animate-pulse h-4 w-16 bg-grey-200 rounded"></div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="animate-pulse h-4 w-24 bg-gray-200 rounded"></div>
+                            <div className="animate-pulse h-4 w-24 bg-grey-200 rounded"></div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-right">
-                            <div className="animate-pulse h-4 w-16 bg-gray-200 rounded ml-auto"></div>
+                            <div className="animate-pulse h-4 w-16 bg-grey-200 rounded ml-auto"></div>
                           </td>
                         </tr>
                       ))
                     ) : filteredAndSortedProperties.length > 0 ? (
                       filteredAndSortedProperties.map((property) => (
-                        <tr key={property.id} className="hover:bg-gray-50">
+                        <tr key={property.id} className="hover:bg-grey-50">
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="h-10 w-10 flex-shrink-0">
@@ -356,34 +356,34 @@ export default function AdminProperties() {
                                 />
                               </div>
                               <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900 line-clamp-1">
+                                <div className="text-sm font-medium text-grey-900 line-clamp-1">
                                   {property.title}
                                 </div>
-                                <div className="text-sm text-gray-500">
+                                <div className="text-sm text-grey-500">
                                   {property.bedrooms} BD · {property.bathrooms} BA · {property.type}
                                 </div>
                               </div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">£{property.price}</div>
-                            <div className="text-sm text-gray-500">per month</div>
+                            <div className="text-sm text-grey-900">£{property.price}</div>
+                            <div className="text-sm text-grey-500">per month</div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">{property.city}</div>
+                            <div className="text-sm text-grey-900">{property.city}</div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                               property.status === 'active' 
                                 ? 'bg-green-100 text-green-800' 
-                                : property.status === 'draft' 
+                                : property.status === 'draught' 
                                 ? 'bg-yellow-100 text-yellow-800'
-                                : 'bg-gray-100 text-gray-800'
+                                : 'bg-grey-100 text-grey-800'
                             }`}>
                               {property.status.charAt(0).toUpperCase() + property.status.slice(1)}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-grey-500">
                             {new Date(property.created_at).toLocaleDateString()}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -408,7 +408,7 @@ export default function AdminProperties() {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="6" className="px-6 py-10 text-center text-sm text-gray-500">
+                        <td colSpan="6" className="px-6 py-10 text-center text-sm text-grey-500">
                           No properties found matching your criteria
                         </td>
                       </tr>
@@ -426,7 +426,7 @@ export default function AdminProperties() {
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              <div className="absolute inset-0 bg-grey-500 opacity-75"></div>
             </div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -436,13 +436,13 @@ export default function AdminProperties() {
                     <TrashIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">Delete Property</h3>
+                    <h3 className="text-lg leading-6 font-medium text-grey-900">Delete Property</h3>
                     <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-grey-500">
                         Are you sure you want to delete this property? This action cannot be undone.
                       </p>
                       {propertyToDelete && (
-                        <p className="mt-2 text-sm font-medium text-gray-900">
+                        <p className="mt-2 text-sm font-medium text-grey-900">
                           "{propertyToDelete.title}"
                         </p>
                       )}
@@ -450,7 +450,7 @@ export default function AdminProperties() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="bg-grey-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
@@ -460,7 +460,7 @@ export default function AdminProperties() {
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-grey-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-grey-700 hover:bg-grey-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => {
                     setIsDeleteModalOpen(false);
                     setPropertyToDelete(null);

@@ -161,7 +161,7 @@ exports.getPropertyAvailability = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // First check if property exists
+    // First cheque if property exists
     const property = await db('properties')
       .where({ id })
       .first();
@@ -203,7 +203,7 @@ exports.getPropertyLocation = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // First check if property exists
+    // First cheque if property exists
     const property = await db('properties')
       .where({ id })
       .first();
@@ -357,7 +357,7 @@ exports.inquireAboutProperty = async (req, res) => {
       });
     }
     
-    // First check if property exists
+    // First cheque if property exists
     const property = await db('properties')
       .where({ id })
       .first();
@@ -408,7 +408,7 @@ exports.addToShortlist = async (req, res) => {
     const { id } = req.params;
     const userId = req.user.id;
     
-    // First check if property exists
+    // First cheque if property exists
     const property = await db('properties')
       .where({ id })
       .first();
@@ -420,7 +420,7 @@ exports.addToShortlist = async (req, res) => {
       });
     }
     
-    // Check if already in shortlist
+    // Cheque if already in shortlist
     const existing = await db('user_shortlist')
       .where({
         user_id: userId,

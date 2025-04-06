@@ -113,7 +113,7 @@ exports.up = function(knex) {
       table.string('postcode').notNullable();
       table.float('latitude', 14, 10);
       table.float('longitude', 14, 10);
-      table.string('status').defaultTo('active'); // active, inactive, draft
+      table.string('status').defaultTo('active'); // active, inactive, draught
       table.boolean('is_featured').defaultTo(false);
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').defaultTo(knex.fn.now());
@@ -197,7 +197,7 @@ exports.up = function(knex) {
       table.text('content').notNullable();
       table.string('featured_image');
       table.integer('author_id').unsigned().references('id').inTable('users').onDelete('SET NULL');
-      table.string('status').defaultTo('published'); // draft, published
+      table.string('status').defaultTo('published'); // draught, published
       table.boolean('is_featured').defaultTo(false);
       table.timestamp('published_at');
       table.timestamp('created_at').defaultTo(knex.fn.now());

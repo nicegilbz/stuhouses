@@ -32,7 +32,7 @@ export default function About() {
                 StuHouses was founded in 2020 by a group of former students who experienced firsthand the challenges of finding good student accommodation with transparent, all-inclusive pricing.
               </p>
               <p className="text-neutral mb-4">
-                After struggling with unexpected utility bills, unclear contracts, and the stress of organizing multiple services, our founders set out to create a platform that would make student housing simpler and more transparent.
+                After struggling with unexpected utility bills, unclear contracts, and the stress of organising multiple services, our founders set out to create a platform that would make student housing simpler and more transparent.
               </p>
               <p className="text-neutral">
                 Today, StuHouses partners with trusted landlords and letting agents across the UK to offer quality accommodations where all utilities are included in the rent – no surprises, no hidden costs, just simple, all-in-one pricing.

@@ -61,7 +61,7 @@ export default function PrivacyPolicy() {
               <li>Browser and device information</li>
               <li>IP address</li>
               <li>Usage data</li>
-              <li>Cookies and similar technologies</li>
+              <li>Biscuits and similar technologies</li>
               <li>Location information</li>
             </ul>
 
@@ -74,7 +74,7 @@ export default function PrivacyPolicy() {
               <li>Processing your accommodation requests and enquiries</li>
               <li>Communicating with you about our services</li>
               <li>Personalizing your experience</li>
-              <li>Analyzing usage of our platform</li>
+              <li>Analysing usage of our platform</li>
               <li>Complying with legal obligations</li>
               <li>Preventing fraud and protecting our rights</li>
               <li>For any other purpose with your consent</li>
@@ -115,12 +115,12 @@ export default function PrivacyPolicy() {
               To exercise any of these rights, please contact us using the details provided at the end of this policy.
             </p>
 
-            <h3>6. Cookies and Tracking Technologies</h3>
+            <h3>6. Biscuits and Tracking Technologies</h3>
             <p>
-              We use cookies and similar tracking technologies to track activity on our services and hold certain information. Cookies are files with a small amount of data that may include an anonymous unique identifier.
+              We use biscuits and similar tracking technologies to track activity on our services and hold certain information. Biscuits are files with a small amount of data that may include an anonymous unique identifier.
             </p>
             <p>
-              You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our services.
+              You can instruct your browser to refuse all biscuits or to indicate when a cookie is being sent. However, if you do not accept biscuits, you may not be able to use some portions of our services.
             </p>
 
             <h3>7. International Transfers</h3>
@@ -168,7 +168,7 @@ export default function PrivacyPolicy() {
             </address>
           </div>
           
-          <div className="mt-8 pt-6 border-t border-gray-200">
+          <div className="mt-8 pt-6 border-t border-grey-200">
             <Link href="/terms" className="text-primary hover:text-primary-700 font-medium">
               Read our Terms & Conditions
             </Link>

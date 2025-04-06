@@ -193,7 +193,7 @@ export default function PropertyMap() {
                     placeholder="Search by city, area or postcode..."
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className="w-full py-2 px-4 pr-12 rounded-lg border border-gray-300 focus:ring-primary focus:border-primary"
+                    className="w-full py-2 px-4 pr-12 rounded-lg border border-grey-300 focus:ring-primary focus:border-primary"
                   />
                   <button 
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary"
@@ -302,7 +302,7 @@ export default function PropertyMap() {
                         type="checkbox"
                         checked={filters.billsIncluded}
                         onChange={handleFilterChange}
-                        className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                        className="h-4 w-4 text-primary focus:ring-primary border-grey-300 rounded"
                       />
                       <label htmlFor="billsIncluded" className="ml-2 block text-sm text-neutral">
                         Bills Included Only
@@ -351,8 +351,8 @@ export default function PropertyMap() {
           </div>
           
           {/* Property Sidebar */}
-          <div className="w-full md:w-1/4 bg-white border-l border-gray-200 overflow-y-auto">
-            <div className="p-4 border-b border-gray-200">
+          <div className="w-full md:w-1/4 bg-white border-l border-grey-200 overflow-y-auto">
+            <div className="p-4 border-b border-grey-200">
               <h2 className="font-bold text-lg">
                 {properties.length} Properties Found
               </h2>
@@ -362,11 +362,11 @@ export default function PropertyMap() {
             </div>
             
             {properties.length > 0 ? (
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-grey-200">
                 {properties.map((property) => (
                   <div 
                     key={property.id}
-                    className={`p-4 hover:bg-neutral-light cursor-pointer transition-colors ${
+                    className={`p-4 hover:bg-neutral-light cursor-pointer transition-colours ${
                       activeProperty?.id === property.id ? 'bg-neutral-light' : ''
                     }`}
                     onClick={() => handlePropertyClick(property)}

@@ -23,7 +23,7 @@ export default function Shortlist() {
         // Simulate loading delay
         await new Promise(resolve => setTimeout(resolve, 800));
         
-        // Check if user is logged in
+        // Cheque if user is logged in
         const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         setIsLoggedIn(userLoggedIn);
         
@@ -178,7 +178,7 @@ export default function Shortlist() {
                     </div>
                     <button
                       onClick={() => removeFromShortlist(property.id)}
-                      className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-red-50 transition-colors"
+                      className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-red-50 transition-colours"
                       aria-label="Remove from shortlist"
                     >
                       <HeartIconSolid className="h-5 w-5 text-red-500" />
@@ -190,7 +190,7 @@ export default function Shortlist() {
 
                   <div className="p-4">
                     <Link href={`/properties/${property.city.toLowerCase()}/${property.slug}`}>
-                      <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colors">
+                      <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colours">
                         {property.title}
                       </h3>
                     </Link>
@@ -216,7 +216,7 @@ export default function Shortlist() {
                       </div>
                     </div>
                     
-                    <div className="flex justify-between items-center pt-3 border-t border-gray-200">
+                    <div className="flex justify-between items-center pt-3 border-t border-grey-200">
                       <div className="text-sm text-neutral">
                         <span className="block">Available from</span>
                         <span className="font-medium text-neutral-dark">
@@ -246,7 +246,7 @@ export default function Shortlist() {
               </p>
               
               <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
+                <table className="min-w-full divide-y divide-grey-200">
                   <thead className="bg-neutral-light">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-neutral-dark uppercase tracking-wider">
@@ -272,7 +272,7 @@ export default function Shortlist() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-grey-200">
                     {shortlistedProperties.map((property) => (
                       <tr key={property.id} className="hover:bg-neutral-light/30">
                         <td className="px-6 py-4 whitespace-nowrap">

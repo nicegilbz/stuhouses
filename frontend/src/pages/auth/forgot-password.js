@@ -77,7 +77,7 @@ export default function ForgotPassword() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <h2 className="text-2xl font-bold text-neutral-dark mb-2">Check Your Email</h2>
+                <h2 className="text-2xl font-bold text-neutral-dark mb-2">Cheque Your Email</h2>
                 <p className="mb-6 text-neutral">
                   We've sent password reset instructions to <strong>{email}</strong>
                 </p>

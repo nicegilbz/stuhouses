@@ -76,14 +76,14 @@ export default function AdminLayout({ children }) {
   }
 
   return (
-    <div className="h-screen flex overflow-hidden bg-gray-100">
+    <div className="h-screen flex overflow-hidden bg-grey-100">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
           className="fixed inset-0 z-40 md:hidden" 
           onClick={() => setSidebarOpen(false)}
         >
-          <div className="absolute inset-0 bg-gray-600 opacity-75" />
+          <div className="absolute inset-0 bg-grey-600 opacity-75" />
         </div>
       )}
 
@@ -115,13 +115,13 @@ export default function AdminLayout({ children }) {
                   className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
                     item.current
                       ? 'bg-primary-light text-primary'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      : 'text-grey-600 hover:bg-grey-50 hover:text-grey-900'
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >
                   <item.icon
                     className={`mr-3 flex-shrink-0 h-6 w-6 ${
-                      item.current ? 'text-primary' : 'text-gray-400 group-hover:text-gray-500'
+                      item.current ? 'text-primary' : 'text-grey-400 group-hover:text-grey-500'
                     }`}
                     aria-hidden="true"
                   />
@@ -130,11 +130,11 @@ export default function AdminLayout({ children }) {
               ))}
             </nav>
           </div>
-          <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+          <div className="flex-shrink-0 flex border-t border-grey-200 p-4">
             <div className="flex-shrink-0 group block">
               <div className="flex items-center">
                 <div>
-                  <div className="inline-block h-9 w-9 rounded-full bg-gray-300 overflow-hidden">
+                  <div className="inline-block h-9 w-9 rounded-full bg-grey-300 overflow-hidden">
                     {user?.avatar ? (
                       <img 
                         src={user.avatar} 
@@ -142,15 +142,15 @@ export default function AdminLayout({ children }) {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <UserIcon className="h-full w-full p-1 text-gray-700" />
+                      <UserIcon className="h-full w-full p-1 text-grey-700" />
                     )}
                   </div>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                  <p className="text-sm font-medium text-grey-700 group-hover:text-grey-900">
                     {user?.name}
                   </p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                  <p className="text-xs font-medium text-grey-500 group-hover:text-grey-700">
                     {user?.email}
                   </p>
                 </div>
@@ -166,7 +166,7 @@ export default function AdminLayout({ children }) {
       {/* Desktop sidebar */}
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
-          <div className="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">
+          <div className="flex flex-col h-0 flex-1 border-r border-grey-200 bg-white">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
                 <span className="text-2xl font-bold text-primary">StuHouses Admin</span>
@@ -179,12 +179,12 @@ export default function AdminLayout({ children }) {
                     className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
                       item.current
                         ? 'bg-primary-light text-primary'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                        : 'text-grey-600 hover:bg-grey-50 hover:text-grey-900'
                     }`}
                   >
                     <item.icon
                       className={`mr-3 flex-shrink-0 h-6 w-6 ${
-                        item.current ? 'text-primary' : 'text-gray-400 group-hover:text-gray-500'
+                        item.current ? 'text-primary' : 'text-grey-400 group-hover:text-grey-500'
                       }`}
                       aria-hidden="true"
                     />
@@ -193,11 +193,11 @@ export default function AdminLayout({ children }) {
                 ))}
               </nav>
             </div>
-            <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+            <div className="flex-shrink-0 flex border-t border-grey-200 p-4">
               <div className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
                   <div>
-                    <div className="inline-block h-9 w-9 rounded-full bg-gray-300 overflow-hidden">
+                    <div className="inline-block h-9 w-9 rounded-full bg-grey-300 overflow-hidden">
                       {user?.avatar ? (
                         <img 
                           src={user.avatar} 
@@ -205,15 +205,15 @@ export default function AdminLayout({ children }) {
                           className="h-full w-full object-cover"
                         />
                       ) : (
-                        <UserIcon className="h-full w-full p-1 text-gray-700" />
+                        <UserIcon className="h-full w-full p-1 text-grey-700" />
                       )}
                     </div>
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                    <p className="text-sm font-medium text-grey-700 group-hover:text-grey-900">
                       {user?.name}
                     </p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                    <p className="text-xs font-medium text-grey-500 group-hover:text-grey-700">
                       {user?.email}
                     </p>
                   </div>
@@ -229,7 +229,7 @@ export default function AdminLayout({ children }) {
         <div className="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
           <button
             type="button"
-            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-grey-500 hover:text-grey-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
             onClick={() => setSidebarOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>

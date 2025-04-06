@@ -7,7 +7,10 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { isLoggedIn } = require('./middleware/auth');
 const { logger, requestLogger } = require('./config/logger');
+const { setupCsrf } = require('./middleware/csrf');
+const { swaggerDocs } = require('./config/swagger');
 const net = require('net');
+const { v4: uuidv4 } = require('uuid');
 
 // Initialize Express app
 const app = express();
@@ -16,7 +19,7 @@ const DEFAULT_PORT = process.env.PORT || 5000;
 // Find an available port
 const findAvailablePort = (port, maxAttempts = 10) => {
   return new Promise((resolve, reject) => {
-    let currentPort = port;
+    let currentPort = parseInt(port, 10);
     let attempts = 0;
 
     const tryPort = (port) => {
@@ -54,16 +57,26 @@ const findAvailablePort = (port, maxAttempts = 10) => {
 const isProduction = process.env.NODE_ENV === 'production';
 const frontendURL = process.env.FRONTEND_URL || 'http://localhost:3000';
 
+// Transaction ID middleware
+app.use((req, res, next) => {
+  req.transactionId = uuidv4();
+  res.setHeader('X-Transaction-ID', req.transactionId);
+  next();
+});
+
 // Middleware
 app.use(cors({
   origin: isProduction ? [frontendURL, /\.vercel\.app$/] : '*',
   credentials: true,
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10kb' })); // Limit body size to prevent DOS attacks
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 app.use(helmet()); // Security headers
 app.use(requestLogger); // Request/response logging
+
+// Set up CSRF protection
+setupCsrf(app);
 
 // Rate limiting
 const apiLimiter = rateLimit({
@@ -72,14 +85,29 @@ const apiLimiter = rateLimit({
   message: {
     status: 'error',
     message: 'Too many requests from this IP, please try again after 15 minutes'
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+// Apply more strict rate limiting to auth routes
+const authLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour window
+  max: 10, // limit each IP to 10 requests per window
+  message: {
+    status: 'error',
+    message: 'Too many login attempts, please try again after an hour'
   }
 });
+
 app.use('/api/', apiLimiter);
+app.use('/api/auth/login', authLimiter);
+app.use('/api/auth/forgot-password', authLimiter);
 
 // Apply isLoggedIn middleware to all routes
 app.use(isLoggedIn);
 
-// API health check route
+// API health cheque route
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -98,6 +126,7 @@ const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const agentRoutes = require('./routes/agentRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 // Route mounting
 app.use('/api/cities', cityRoutes);
@@ -108,6 +137,14 @@ app.use('/api/users', userRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/agents', agentRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/payments', paymentRoutes);
+
+// Special route for Stripe webhooks - needs to be before the express.json() middleware
+app.post('/api/payments/webhook', express.raw({ type: 'application/json' }), (req, res, next) => {
+  // Store raw body for Stripe webhook signature verification
+  req.rawBody = req.body;
+  next();
+});
 
 // 404 handler for unknown routes
 app.all('*', (req, res) => {
@@ -123,22 +160,25 @@ app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const status = err.status || 'error';
   
-  logger.error(`${req.method} ${req.originalUrl} - ${err.message}`, { 
+  // Log the error
+  const logLevel = statusCode >= 500 ? 'error' : 'warn';
+  logger[logLevel](`${req.method} ${req.originalUrl} - ${err.message}`, { 
     stack: err.stack,
     statusCode,
     path: req.originalUrl,
-    transactionId: req.transactionId // Will be set by request logger
+    transactionId: req.transactionId
   });
   
+  // Send response
   res.status(statusCode).json({
     status,
     message: err.message,
     transactionId: req.transactionId,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    ...(process.env.NODE_ENV === 'development' ? { stack: err.stack } : {})
   });
 });
 
-// Database connection status check
+// Database connection status cheque
 const checkDatabaseConnection = async () => {
   try {
     await db.raw('SELECT 1');
@@ -175,7 +215,7 @@ process.on('unhandledRejection', (reason, promise) => {
   });
 });
 
-// Check if we're running in Vercel serverless environment
+// Cheque if we're running in Vercel serverless environment
 const isVercel = process.env.VERCEL === '1';
 
 if (isVercel) {
@@ -183,7 +223,7 @@ if (isVercel) {
   // Vercel will handle the request/response cycle
   logger.info('Running in Vercel serverless environment');
   
-  // Check database connection
+  // Cheque database connection
   checkDatabaseConnection();
   
   // Export the Express app for Vercel serverless function
@@ -197,7 +237,10 @@ if (isVercel) {
         logger.info(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
         logger.info(`API available at http://localhost:${port}/api`);
         
-        // Check database connection
+        // Setup Swagger
+        swaggerDocs(app, port);
+        
+        // Cheque database connection
         checkDatabaseConnection();
       });
       

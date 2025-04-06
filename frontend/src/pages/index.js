@@ -7,7 +7,7 @@ import { HomeIcon, DocumentTextIcon, SparklesIcon } from '@heroicons/react/24/so
 
 // Featured cities with property counts
 const featuredCities = [
-  { name: 'Leeds', count: 2043, image: 'https://images.unsplash.com/photo-1681808231339-f512b8467e4a?q=80&w=500&h=300&auto=format&fit=crop' },
+  { name: 'Leeds', count: 2043, image: 'https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=500&h=300&auto=format&fit=crop' },
   { name: 'Manchester', count: 1856, image: 'https://images.unsplash.com/photo-1563995103864-d87d3c1fdd39?q=80&w=500&h=300&auto=format&fit=crop' },
   { name: 'Birmingham', count: 1522, image: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=500&h=300&auto=format&fit=crop' },
   { name: 'Liverpool', count: 1345, image: 'https://images.unsplash.com/photo-1534196511436-921a4e99f297?q=80&w=500&h=300&auto=format&fit=crop' },

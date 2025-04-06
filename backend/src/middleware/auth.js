@@ -1,48 +1,103 @@
 const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
 const { db } = require('../config/database');
+const { logger } = require('../config/logger');
 
 /**
- * Middleware to protect routes that require authentication
+ * Middleware to set isLoggedIn property on the request
+ * but not require authentication
  */
-exports.protect = async (req, res, next) => {
+exports.isLoggedIn = async (req, res, next) => {
   try {
+    // 1) Cheque if token exists
     let token;
-
-    // Check if token exists in headers or cookies
+    
     if (
-      req.headers.authorization &&
-      req.headers.authorization.startsWith('Bearer')
+      req.headers.authorisation &&
+      req.headers.authorisation.startsWith('Bearer')
     ) {
-      // Get token from authorization header
-      token = req.headers.authorization.split(' ')[1];
-    } else if (req.cookies.jwt) {
-      // Get token from cookies
-      token = req.cookies.jwt;
+      token = req.headers.authorisation.split(' ')[1];
+    } else if (req.biscuits && req.biscuits.jwt) {
+      token = req.biscuits.jwt;
     }
+    
+    // If no token, user is not logged in
+    if (!token || token === 'loggedout') {
+      req.user = null;
+      return next();
+    }
+    
+    try {
+      // 2) Verify token
+      const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+      
+      // 3) Cheque if user still exists
+      const currentUser = await db('users')
+        .where({ id: decoded.id })
+        .select('id', 'email', 'role')
+        .first();
+      
+      if (!currentUser) {
+        req.user = null;
+        return next();
+      }
+      
+      // 4) Set user on request object
+      req.user = currentUser;
+      return next();
+    } catch (error) {
+      // If token verification fails, user is not logged in
+      req.user = null;
+      return next();
+    }
+  } catch (error) {
+    logger.error(`Error in isLoggedIn middleware: ${error.message}`, { error });
+    req.user = null;
+    return next();
+  }
+};
 
+/**
+ * Middleware to require authentication
+ */
+exports.requireAuth = async (req, res, next) => {
+  try {
+    // 1) Cheque if token exists
+    let token;
+    
+    if (
+      req.headers.authorisation &&
+      req.headers.authorisation.startsWith('Bearer')
+    ) {
+      token = req.headers.authorisation.split(' ')[1];
+    } else if (req.biscuits && req.biscuits.jwt) {
+      token = req.biscuits.jwt;
+    }
+    
     if (!token) {
       return res.status(401).json({
         status: 'fail',
         message: 'You are not logged in. Please log in to get access.'
       });
     }
-
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Check if user still exists
+    
+    // 2) Verify token
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    
+    // 3) Cheque if user still exists
     const currentUser = await db('users')
       .where({ id: decoded.id })
+      .select('id', 'email', 'role', 'first_name', 'last_name')
       .first();
-
+    
     if (!currentUser) {
       return res.status(401).json({
         status: 'fail',
         message: 'The user belonging to this token no longer exists.'
       });
     }
-
-    // Grant access to protected route
+    
+    // 4) Set user on request object
     req.user = currentUser;
     next();
   } catch (error) {
@@ -52,44 +107,38 @@ exports.protect = async (req, res, next) => {
         message: 'Invalid token. Please log in again.'
       });
     }
-
+    
     if (error.name === 'TokenExpiredError') {
       return res.status(401).json({
         status: 'fail',
         message: 'Your token has expired. Please log in again.'
       });
     }
-
-    console.error(`Authentication error: ${error.message}`);
+    
+    logger.error(`Error in requireAuth middleware: ${error.message}`, { error });
+    
     return res.status(500).json({
       status: 'error',
-      message: 'An error occurred during authentication'
+      message: 'Internal server error'
     });
   }
 };
 
 /**
- * Middleware to check if a user is logged in (for optional auth)
+ * Middleware to restrict access to specific roles
+ * @param  {...string} roles - Allowed roles
+ * @returns {Function} Express middleware
  */
-exports.isLoggedIn = async (req, res, next) => {
-  try {
-    if (req.cookies.jwt) {
-      // Verify token
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
-
-      // Check if user still exists
-      const currentUser = await db('users')
-        .where({ id: decoded.id })
-        .first();
-
-      if (currentUser) {
-        // Add user to request object
-        req.user = currentUser;
-      }
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    // Cheque if user exists and has one of the required roles
+    if (!req.user || !roles.includes(req.user.role)) {
+      return res.status(403).json({
+        status: 'fail',
+        message: 'You do not have permission to perform this action'
+      });
     }
+    
     next();
-  } catch (error) {
-    // Continue even if token is invalid
-    next();
-  }
+  };
 }; 

@@ -79,7 +79,7 @@ exports.seed = async function(knex) {
     }
   ];
   
-  // Check which properties already exist
+  // Cheque which properties already exist
   const existingProperties = await knex('properties')
     .whereIn('slug', additionalProperties.map(p => p.slug))
     .select('slug');
