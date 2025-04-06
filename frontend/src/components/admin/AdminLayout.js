@@ -15,6 +15,8 @@ import {
   ChartBarIcon
 } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
+import authService from '../../utils/auth';
+import toast from 'react-hot-toast';
 
 // Navigation items for admin sidebar
 const navigation = [
@@ -47,17 +49,32 @@ export default function AdminLayout({ children }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        // This should be replaced with your actual authentication logic
-        const response = await fetch('/api/auth/me');
-        if (response.ok) {
-          const userData = await response.json();
-          setUser(userData.data.user);
-        } else {
-          // Redirect to login if not authenticated
-          router.push('/auth/login?redirect=/admin');
+        // Check if user is authenticated and is an admin
+        const userData = await authService.getCurrentUser();
+        
+        if (!userData) {
+          // Redirect to admin login if not authenticated
+          console.log("No user data found, redirecting to admin login");
+          router.replace('/admin/login');
+          return;
         }
+        
+        if (userData.role !== 'admin') {
+          // If authenticated but not admin, logout and redirect
+          console.log("User is not an admin, logging out and redirecting");
+          toast.error("You don't have permission to access the admin area");
+          await authService.logout();
+          router.replace('/admin/login');
+          return;
+        }
+        
+        // User is authenticated and is an admin
+        console.log("Admin user authenticated:", userData.email);
+        setUser(userData);
       } catch (error) {
         console.error('Failed to fetch user:', error);
+        toast.error("Authentication error. Please login again.");
+        router.replace('/admin/login');
       } finally {
         setIsLoading(false);
       }

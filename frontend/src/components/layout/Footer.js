@@ -92,7 +92,7 @@ export default function Footer() {
                 <li key={city.name}>
                   <Link
                     href={city.href}
-                    className="text-grey-300 hover:text-white transition-colours"
+                    className="text-grey-300 hover:text-white transition-colors"
                   >
                     {city.name}
                   </Link>
@@ -101,7 +101,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/cities"
-                  className="text-primary-300 hover:text-white font-medium transition-colours"
+                  className="text-primary-300 hover:text-white font-medium transition-colors"
                 >
                   View all cities →
                 </Link>
@@ -117,7 +117,7 @@ export default function Footer() {
                 <li key={university.name}>
                   <Link
                     href={university.href}
-                    className="text-grey-300 hover:text-white transition-colours"
+                    className="text-grey-300 hover:text-white transition-colors"
                   >
                     {university.name}
                   </Link>
@@ -126,7 +126,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/universities"
-                  className="text-primary-300 hover:text-white font-medium transition-colours"
+                  className="text-primary-300 hover:text-white font-medium transition-colors"
                 >
                   View all universities →
                 </Link>
@@ -141,7 +141,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-grey-300 hover:text-white transition-colours"
+                  className="text-grey-300 hover:text-white transition-colors"
                 >
                   About Us
                 </Link>
@@ -149,7 +149,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-grey-300 hover:text-white transition-colours"
+                  className="text-grey-300 hover:text-white transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -157,7 +157,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/faq"
-                  className="text-grey-300 hover:text-white transition-colours"
+                  className="text-grey-300 hover:text-white transition-colors"
                 >
                   FAQ
                 </Link>
@@ -165,7 +165,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/safety-policy"
-                  className="text-grey-300 hover:text-white transition-colours"
+                  className="text-grey-300 hover:text-white transition-colors"
                 >
                   Safety Policy
                 </Link>
@@ -173,7 +173,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-grey-300 hover:text-white transition-colours"
+                  className="text-grey-300 hover:text-white transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -181,7 +181,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="text-grey-300 hover:text-white transition-colours"
+                  className="text-grey-300 hover:text-white transition-colors"
                 >
                   Terms & Conditions
                 </Link>

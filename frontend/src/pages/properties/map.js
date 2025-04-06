@@ -366,7 +366,7 @@ export default function PropertyMap() {
                 {properties.map((property) => (
                   <div 
                     key={property.id}
-                    className={`p-4 hover:bg-neutral-light cursor-pointer transition-colours ${
+                    className={`p-4 hover:bg-neutral-light cursor-pointer transition-colors ${
                       activeProperty?.id === property.id ? 'bg-neutral-light' : ''
                     }`}
                     onClick={() => handlePropertyClick(property)}

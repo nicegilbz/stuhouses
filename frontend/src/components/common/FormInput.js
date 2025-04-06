@@ -27,7 +27,7 @@ const FormInput = ({
     block w-full px-4 py-2 mt-1 text-base border rounded-md shadow-sm
     focus:outline-none focus:ring-2 focus:border-transparent
     placeholder:text-neutral-400
-    transition-colours duration-200
+    transition-colors duration-200
   `;
   
   // Define variant classes based on state

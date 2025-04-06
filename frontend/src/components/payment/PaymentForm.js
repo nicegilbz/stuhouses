@@ -127,17 +127,17 @@ const CheckoutForm = ({ amount, propertyId, propertyTitle, paymentType }) => {
             options={{
               style: {
                 base: {
-                  colour: '#32325d',
+                  color: '#32325d',
                   fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
                   fontSmoothing: 'antialiased',
                   fontSize: '16px',
                   '::placeholder': {
-                    colour: '#aab7c4'
+                    color: '#aab7c4'
                   }
                 },
                 invalid: {
-                  colour: '#fa755a',
-                  iconColour: '#fa755a'
+                  color: '#fa755a',
+                  iconColor: '#fa755a'
                 }
               }
             }}

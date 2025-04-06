@@ -178,7 +178,7 @@ export default function Shortlist() {
                     </div>
                     <button
                       onClick={() => removeFromShortlist(property.id)}
-                      className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-red-50 transition-colours"
+                      className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-red-50 transition-colors"
                       aria-label="Remove from shortlist"
                     >
                       <HeartIconSolid className="h-5 w-5 text-red-500" />
@@ -190,7 +190,7 @@ export default function Shortlist() {
 
                   <div className="p-4">
                     <Link href={`/properties/${property.city.toLowerCase()}/${property.slug}`}>
-                      <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colours">
+                      <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colors">
                         {property.title}
                       </h3>
                     </Link>

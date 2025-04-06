@@ -18,7 +18,7 @@ const Button = ({
   ...props
 }) => {
   // Define base classes
-  const baseClasses = 'inline-flex items-center justify-center font-medium transition-colours duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
   
   // Define variant classes
   const variantClasses = {

@@ -204,7 +204,7 @@ export default function Account() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`flex items-center px-4 py-2 rounded-lg transition-colours ${
+                    className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
                       item.current
                         ? 'bg-primary/10 text-primary font-medium'
                         : 'text-neutral-dark hover:bg-neutral-light'
@@ -217,7 +217,7 @@ export default function Account() {
                 
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center px-4 py-2 rounded-lg text-neutral-dark hover:bg-neutral-light transition-colours mt-4"
+                  className="w-full flex items-center px-4 py-2 rounded-lg text-neutral-dark hover:bg-neutral-light transition-colors mt-4"
                 >
                   <ArrowRightOnRectangleIcon className="h-5 w-5 mr-3 flex-shrink-0" />
                   <span>Log Out</span>

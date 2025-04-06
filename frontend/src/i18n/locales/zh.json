@@ -1,0 +1,47 @@
+{
+  "common": {
+    "home": "首页",
+    "close": "关闭",
+    "open": "打开",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "search": "搜索",
+    "all": "全部",
+    "none": "无",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "view": "查看"
+  },
+  "nav": {
+    "home": "首页",
+    "properties": "房源",
+    "cities": "城市",
+    "universities": "大学",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "login": "登录",
+    "signup": "注册",
+    "shortlist": "收藏",
+    "account": "我的账户",
+    "logout": "退出登录",
+    "admin": "管理后台"
+  },
+  "auth": {
+    "login": "登录",
+    "signup": "注册",
+    "logout": "退出登录",
+    "email": "电子邮箱",
+    "password": "密码"
+  },
+  "languages": {
+    "en-GB": "英语（英国）",
+    "es": "西班牙语",
+    "fr": "法语",
+    "it": "意大利语",
+    "zh": "中文",
+    "he": "希伯来语"
+  }
+} 

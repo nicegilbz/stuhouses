@@ -432,7 +432,7 @@ export default function Properties() {
 
                 <div className="p-4">
                   <Link href={`/properties/${property.city.toLowerCase()}/${property.slug}`}>
-                    <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colours">
+                    <h3 className="text-xl font-bold text-neutral-dark mb-2 hover:text-primary transition-colors">
                       {property.title}
                     </h3>
                   </Link>
@@ -497,7 +497,7 @@ export default function Properties() {
                     </div>
                     <Link 
                       href={`/properties/${property.city.toLowerCase()}/${property.slug}`} 
-                      className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colours"
+                      className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colors"
                     >
                       View Property
                       <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

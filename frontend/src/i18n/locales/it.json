@@ -1,0 +1,47 @@
+{
+  "common": {
+    "home": "Home",
+    "close": "Chiudi",
+    "open": "Apri",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "search": "Cerca",
+    "all": "Tutto",
+    "none": "Nessuno",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "view": "Visualizza"
+  },
+  "nav": {
+    "home": "Home",
+    "properties": "Proprietà",
+    "cities": "Città",
+    "universities": "Università",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "login": "Accedi",
+    "signup": "Registrati",
+    "shortlist": "Preferiti",
+    "account": "Il mio account",
+    "logout": "Esci",
+    "admin": "Amministrazione"
+  },
+  "auth": {
+    "login": "Accedi",
+    "signup": "Registrati",
+    "logout": "Esci",
+    "email": "Email",
+    "password": "Password"
+  },
+  "languages": {
+    "en-GB": "Inglese (UK)",
+    "es": "Spagnolo",
+    "fr": "Francese",
+    "it": "Italiano",
+    "zh": "Cinese",
+    "he": "Ebraico"
+  }
+} 

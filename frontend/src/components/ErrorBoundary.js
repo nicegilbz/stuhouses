@@ -73,14 +73,14 @@ class ErrorBoundary extends React.Component {
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.location.reload()}
-                className="bg-primary hover:bg-primary-600 text-white rounded-md px-4 py-2 transition-colours"
+                className="bg-primary hover:bg-primary-600 text-white rounded-md px-4 py-2 transition-colors"
               >
                 Refresh Page
               </button>
               
               <Link 
                 href="/"
-                className="flex items-center justify-center bg-neutral-200 hover:bg-neutral-300 text-neutral-dark rounded-md px-4 py-2 transition-colours"
+                className="flex items-center justify-center bg-neutral-200 hover:bg-neutral-300 text-neutral-dark rounded-md px-4 py-2 transition-colors"
               >
                 <HomeIcon className="h-5 w-5 mr-2" />
                 Go to Home Page

@@ -47,7 +47,7 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
 
         {/* Favorite Button */}
         <button
-          className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-grey-100 transition-colours"
+          className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-grey-100 transition-colors"
           onClick={handleFavoriteClick}
           aria-label={isFavorited ? "Remove from shortlist" : "Add to shortlist"}
         >
@@ -67,7 +67,7 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
       {/* Property Details */}
       <div className="p-4">
         <Link href={`/properties/${property.slug}`} className="block">
-          <h3 className="text-xl font-bold text-neutral-dark mb-2 group-hover:text-primary transition-colours">
+          <h3 className="text-xl font-bold text-neutral-dark mb-2 group-hover:text-primary transition-colors">
             {property.title}
           </h3>
           
@@ -123,7 +123,7 @@ const PropertyCard = ({ property, isFavorited = false, onToggleFavorite }) => {
           </div>
           <Link 
             href={`/properties/${property.slug}`} 
-            className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colours"
+            className="inline-flex items-center text-primary font-medium hover:text-primary-700 transition-colors"
           >
             View Property
             <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

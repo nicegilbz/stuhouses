@@ -286,7 +286,7 @@ export default function FAQ() {
           {faqCategories.map((category, index) => (
             <button
               key={index}
-              className={`px-4 py-2 rounded-full text-sm md:text-base font-medium transition-colours ${
+              className={`px-4 py-2 rounded-full text-sm md:text-base font-medium transition-colors ${
                 openCategory === index
                   ? 'bg-primary text-white'
                   : 'bg-neutral-light text-neutral-dark hover:bg-primary-50'

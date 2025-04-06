@@ -290,5 +290,13 @@
     "register_interest": "Register Interest",
     "enquire_now": "Enquire Now",
     "find_out_more": "Find Out More"
+  },
+  "languages": {
+    "en-GB": "English (UK)",
+    "es": "Spanish",
+    "fr": "French",
+    "it": "Italian",
+    "zh": "Chinese",
+    "he": "Hebrew"
   }
 } 

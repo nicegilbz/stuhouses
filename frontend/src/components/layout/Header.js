@@ -79,6 +79,11 @@ export default function Header() {
     setUserMenuOpen(false);
   };
 
+  // Add this function to check if user is admin
+  const isAdmin = (user) => {
+    return user && (user.role === 'admin' || user.isAdmin);
+  };
+
   return (
     <header className={`sticky top-0 z-50 transition-shadow duration-300 ${
       isScrolled ? 'bg-white shadow-md' : 'bg-white'
@@ -114,7 +119,7 @@ export default function Header() {
             
             <Link
               href="/shortlist"
-              className="p-2 text-neutral hover:text-primary hover:bg-neutral-light rounded-full transition-colours"
+              className="p-2 text-neutral hover:text-primary hover:bg-neutral-light rounded-full transition-colors"
               aria-label={t('nav.shortlist')}
             >
               <HeartIcon className="h-6 w-6" />
@@ -170,7 +175,7 @@ export default function Header() {
                       <CreditCardIcon className="h-5 w-5 mr-2" />
                       My Payments
                     </Link>
-                    {user?.role === 'admin' && (
+                    {isAdmin(user) && (
                       <Link
                         href="/admin"
                         className="flex items-center px-4 py-2 text-sm text-grey-700 hover:bg-grey-100"
@@ -284,7 +289,7 @@ export default function Header() {
                   <CreditCardIcon className="h-5 w-5 mr-3" />
                   My Payments
                 </Link>
-                {user?.role === 'admin' && (
+                {isAdmin(user) && (
                   <Link
                     href="/admin"
                     className="flex items-center px-3 py-2 rounded-md text-base font-medium text-neutral hover:text-primary hover:bg-neutral-light"

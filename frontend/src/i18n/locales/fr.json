@@ -1,0 +1,47 @@
+{
+  "common": {
+    "home": "Accueil",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "search": "Rechercher",
+    "all": "Tout",
+    "none": "Aucun",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "view": "Voir"
+  },
+  "nav": {
+    "home": "Accueil",
+    "properties": "Propriétés",
+    "cities": "Villes",
+    "universities": "Universités",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "shortlist": "Favoris",
+    "account": "Mon Compte",
+    "logout": "Déconnexion",
+    "admin": "Administration"
+  },
+  "auth": {
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "logout": "Déconnexion",
+    "email": "E-mail",
+    "password": "Mot de passe"
+  },
+  "languages": {
+    "en-GB": "Anglais (UK)",
+    "es": "Espagnol",
+    "fr": "Français",
+    "it": "Italien",
+    "zh": "Chinois",
+    "he": "Hébreu"
+  }
+} 

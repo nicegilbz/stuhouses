@@ -96,7 +96,7 @@ const Auth = () => {
 
       <div className="min-h-screen bg-neutral-light flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <Link href="/" className="flex items-center justify-center text-primary hover:text-primary-600 transition-colours">
+          <Link href="/" className="flex items-center justify-center text-primary hover:text-primary-600 transition-colors">
             <HomeIcon className="h-8 w-8 mr-2" />
             <span className="text-2xl font-bold">StuHouses</span>
           </Link>
@@ -107,7 +107,7 @@ const Auth = () => {
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button
               onClick={toggleAuthMode}
-              className="font-medium text-primary hover:text-primary-600 transition-colours"
+              className="font-medium text-primary hover:text-primary-600 transition-colors"
             >
               {isLogin ? 'Register here' : 'Sign in'}
             </button>
@@ -164,7 +164,7 @@ const LoginForm = ({ onSubmit, isLoading }) => {
             <div className="mt-2 text-right">
               <Link 
                 href="/auth/forgot-password"
-                className="text-sm font-medium text-primary hover:text-primary-600 transition-colours"
+                className="text-sm font-medium text-primary hover:text-primary-600 transition-colors"
               >
                 Forgot your password?
               </Link>
