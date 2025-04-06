@@ -8,6 +8,14 @@
   ],
   "routes": [
     {
+      "src": "/admin/login",
+      "dest": "/admin/login"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
+    },
+    {
       "src": "/api/(.*)",
       "headers": {
         "cache-control": "public, max-age=0, s-maxage=60, stale-while-revalidate=30"
@@ -19,11 +27,12 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/$1"
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://stuhouses-api.vercel.app/api",
+    "NEXT_PUBLIC_API_URL": "https://stuhouses.vercel.app/api",
+    "NEXT_PUBLIC_USE_MOCK_DATA": "true",
     "POSTGRES_USER": "@postgres-user",
     "POSTGRES_PASSWORD": "@postgres-password",
     "POSTGRES_HOST": "@postgres-host",

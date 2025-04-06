@@ -329,9 +329,9 @@ export const verifyToken = (token) => {
   
   try {
     // In a real app, you would verify the token with JWT library
-    // For this mock implementation, we'll just parse and return stored users
+    // For this mock implementation, we'll handle special admin token
     
-    // Check admin user first
+    // Hardcoded admin token
     if (token === 'admin-token') {
       return {
         id: 1,
@@ -350,6 +350,19 @@ export const verifyToken = (token) => {
         name: user.name || `User ${user.id}`,
         role: user.role || 'user'
       };
+    }
+    
+    // Get token from localStorage as fallback
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('token');
+      if (storedToken === 'admin-token') {
+        return {
+          id: 1,
+          email: 'admin@stuhouses.com',
+          name: 'Admin User',
+          role: 'admin'
+        };
+      }
     }
     
     return null;

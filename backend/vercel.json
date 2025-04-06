@@ -8,22 +8,17 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/(.*)",
       "dest": "src/server.js"
     }
   ],
   "env": {
     "NODE_ENV": "production",
+    "PORT": "8080",
     "DATABASE_URL": "@database_url",
     "JWT_SECRET": "@jwt_secret",
-    "FRONTEND_URL": "@frontend_url",
     "STRIPE_SECRET_KEY": "@stripe_secret_key",
     "STRIPE_WEBHOOK_SECRET": "@stripe_webhook_secret",
-    "GOOGLE_MAPS_API_KEY": "@google_maps_api_key",
-    "EMAIL_HOST": "@email_host",
-    "EMAIL_PORT": "@email_port",
-    "EMAIL_USERNAME": "@email_username",
-    "EMAIL_PASSWORD": "@email_password",
-    "EMAIL_FROM": "@email_from"
+    "FRONTEND_URL": "https://stuhouses.vercel.app"
   }
 } 
